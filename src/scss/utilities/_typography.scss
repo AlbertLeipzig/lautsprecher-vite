@@ -1,0 +1,62 @@
+@use '_root.scss' as *;
+@use '_colors.scss' as *;
+
+@import url('https://fonts.cdnfonts.com/css/special-elite');
+@import url('https://fonts.cdnfonts.com/css/alegreya-sans');
+
+$primaryFont: 'Alegreya Sans', sans-serif;
+$logoFont: 'Special Elite', sans-serif;
+
+h1 {
+  font-family: $primaryFont;
+  font-family: $logoFont;
+  font-size: 3.2rem;
+  font-weight: 700;
+  color: $primaryColor;
+  text-align: center;
+  //  margin: 1em 0 1.5em;
+}
+
+h2 {
+  font-family: $primaryFont;
+  font-size: 2rem;
+  font-weight: 700;
+  color: $primaryColor;
+  margin-bottom: 1em;
+}
+
+h3 {
+  font-family: $primaryFont;
+  font-size: 2rem;
+  font-weight: 400;
+  color: $primaryColor;
+}
+
+p,
+a,
+label,
+input,
+textarea,
+button {
+  font-family: $primaryFont;
+  font-size: 1.8rem;
+  font-weight: 400;
+  color: $grey;
+  line-height: 1.7em;
+}
+a {
+  /* transition: 200ms; */
+  padding: 0.5em;
+  &:hover {
+    color: orange;
+  }
+  &:focus {
+    color: red;
+  }
+  &:active {
+    color: greenyellow;
+  }
+  &:visited {
+    color: $primaryColor;
+  }
+}

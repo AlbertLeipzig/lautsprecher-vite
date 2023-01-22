@@ -1,0 +1,47 @@
+@use '../utilities/colors' as *;
+form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+label {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: fit-content;
+  margin: 1.5vh 0;
+}
+input,
+textarea {
+  width: 250px;
+  height: 50px;
+  border-radius: 5px;
+  margin: 10px 0;
+  padding: 0 10px;
+  border: 1px solid $primaryColor;
+}
+
+.contact {
+  margin-bottom: 10vh;
+
+  & button {
+    background-color: $primaryColor;
+    color: white;
+    transition: 150ms ease-in-out;
+
+    &:hover {
+      background-color: $secondaryColor;
+    }
+
+    &:active {
+      background-color: $tertiaryColor;
+    }
+    &:focus {
+      background-color: $white;
+      outline: 2px solid $primaryColor;
+      /* box-shadow: 5px 5px 10px 0px $primaryColor; */
+      color: $grey;
+    }
+  }
+}
