@@ -27,11 +27,9 @@ export const Events = () => {
     dataFetch();
   }, []);
 
-  /* events && console.log(events[0].name); */
   /* filter events */
 
   useEffect(() => {
-    console.log(filter);
     if (filter.date === '' && filter.tag === '') {
       setFilteredEvents(events.data);
     } else if (filter.date || filter.tag) {
@@ -78,8 +76,8 @@ export const Events = () => {
         </div>
       )}
       <div className="events-container">
-        {events &&
-          Object.values(events).map((event) => (
+        {filteredEvents &&
+          Object.values(filteredEvents).map((event) => (
             <EventCard key={event._id} event={event} />
           ))}
       </div>

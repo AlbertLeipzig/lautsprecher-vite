@@ -3,9 +3,7 @@ import { filteredByTag } from './filteredByTag';
 
 const eventFilter = (events, filter) => {
   let filteredEvents;
-  filteredEvents = 'not yet';
-
-  const eventsArray = events?.data;
+  const eventsArray = events;
 
   const completeFilterEvent = () => {
     const eventByDate = filteredByDate(eventsArray, filter);
@@ -23,7 +21,7 @@ const eventFilter = (events, filter) => {
     filteredEvents = events;
   }
 
-  return filteredEvents;
+  /* return filteredEvents; */
 };
 
 export { eventFilter };
