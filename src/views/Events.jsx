@@ -3,6 +3,7 @@ import { eventFilter } from '../logic/eventFilter';
 import { DataContext } from '../context/DataContext';
 import { EventCard } from '../components/EventCard';
 import axios from 'axios';
+
 export const Events = () => {
   const [filter, setFilter] = useState({ date: '', tag: '' });
   const { events } = useContext(DataContext);
@@ -10,29 +11,28 @@ export const Events = () => {
 
   /* fetch data from api */
 
+  const url = 'http://localhost:6000/api/v1/events';
+
   useEffect(() => {
-    axios('http://localhost/api/v1/events')
-      .then((res) => res.json())
-      .then((data) => console.log(data));
+    (async () => {
+      const data = (await axios.get(url)).data;
+      console.log(data);
+    })();
   }, []);
 
-  /* filter events */
-
-  useEffect(() => {
-    if (filter.date === '' && filter.tag === '') {
-      setFilteredEvents(events.data);
-      /* setSingleEvent(filteredEvents[0]); */
-    } else if (filter.date || filter.tag) {
-      setFilteredEvents(eventFilter(events, filter));
-      /* setSingleEvent(filteredEvents[0]); */
-    } else {
-      setFilteredEvents(events.data);
+  /* 
+  const dataFetch = async () => {
+    try {
+      const res = await axios('http://localhost:6000/api/v1/events');
+      console.log(res);
+    } catch (e) {
+      console.error(e);
     }
-  }, [filter, events]);
-
-  filteredEvents && console.log(filteredEvents);
-
-  /* singleEvent && console.log('SINGLE EVENT : ', singleEvent); */
+  };
+  useEffect(() => {
+    dataFetch();
+  }, []);
+  */
 
   return (
     <div className="events">
