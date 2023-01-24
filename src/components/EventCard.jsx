@@ -2,9 +2,9 @@ import { useEffect, useState } from 'react';
 
 const placeholderImageArray = [
   'https://images.unsplash.com/photo-1445375011782-2384686778a0?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MzZ8fG11c2ljfGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=500&q=60',
-  'https://images.unsplash.com/photo-1517436073-3b1b1b1b1b1b?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MzF8fG11c2ljfGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=500&q=60',
-  'https://images.unsplash.com/photo-1517436073-3b1b1b1b1b1b?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MzF8fG11c2ljfGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=500&q=60',
-  'https://images.unsplash.com/photo-1517436073-3b1b1b1b1b1b?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MzF8fG11c2ljfGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=500&q=60',
+  'https://images.unsplash.com/photo-1507838153414-b4b713384a76?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8M3x8bXVzaWN8ZW58MHx8MHx8&auto=format&fit=crop&w=500&q=60',
+  'https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8OHx8bXVzaWN8ZW58MHx8MHx8&auto=format&fit=crop&w=500&q=60',
+  'https://images.unsplash.com/photo-1507676184212-d03ab07a01bf?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MjR8fGNvbmNlcnR8ZW58MHx8MHx8&auto=format&fit=crop&w=500&q=60',
 ];
 
 export const EventCard = ({ event }) => {
@@ -17,7 +17,7 @@ export const EventCard = ({ event }) => {
 
   // function to make every word in the title start with a capital letter
 
-  const formattedTitle = (title) => {
+  /*   const formattedTitle = (title) => {
     const titleArray = title.split(' ');
     const formattedTitleArray = titleArray.map((word) => {
       return capitalizeFirstLetter(word);
@@ -25,11 +25,11 @@ export const EventCard = ({ event }) => {
     return formattedTitleArray.join(' ');
   };
 
-  event.title && (event.title = formattedTitle(event.title));
+  event.title && (event.title = formattedTitle(event.title)); */
 
   useEffect(() => {
-    if (event.img) {
-      setImage(event.img);
+    if (event.img || event.image) {
+      setImage(event.img || event.image);
     } else {
       setImage(
         placeholderImageArray[
@@ -39,20 +39,43 @@ export const EventCard = ({ event }) => {
     }
   }, [event.img]);
 
+  event && console.log(event);
+
   return (
-    <div className="event__card">
-      <img src={image} alt={`${event.name} image` ?? 'event image'} />
-      <div className="event__card__content">
-        <h3>{event.title ?? 'event name'}</h3>
-        <p className="event__subtitle">{event?.subtitle}</p>
-        <p>{event.date}</p>
-        <p>{capitalizeFirstLetter(event.location)}</p>
-        <p>{event.price} E</p>
-        <p>{event?.description.slice(0, 100)}</p>
-        <a href={event.link} target={'_blank'}>
-          +info
-        </a>
+    <div className="event-card">
+      <>
+      <div className="event-card__main">
+        {image && <img src={image} alt={'event image'} />}
+        {event.title && <h3>{`TITLE : ${event?.title}`}</h3>}
+        {event.name && <h3>{` NAME : ${event?.name}`}</h3>}
+        {event.subtitle && (
+          <p className="event-subtitle">{`SUBTITLE : ${
+            event?.subtitle || 'HI THERE'
+          }`}</p>
+        )}
+        <p className="event-subtitle">{`SUBTITLE : ${
+          event?.subtitle || 'HI THERE'
+        }`}</p>
       </div>
+      <div className="event-card__content">
+        <div>
+          {event.date && <p>{`DATE : ${Object.toString(event?.date)}`}</p>}
+          {event.venue && <p>{`VENUE : ${event?.venue}`}</p>}
+        </div>
+        {event.musicians &&
+          event.musicians.map((musician) => <p>MUSICIAN : {musician}</p>)}
+        {event.bands && event.bands.map((band) => <p>BAND : {band}</p>)}
+        {/* {event.description && <p>{event?.description.slice(0, 100)}</p>} */}
+        {event.price && <p>{`PRICE : ${event?.price.$numberDecimal} E`}</p>}
+        {event.link.length > 0 && (
+          <a href={event.link} target={'_blank'}>
+            + INFO
+          </a>
+        )}
+        {event.organizer && <p>{`ORGANIZER : ${event?.organizer}`}</p>}
+        {event.tags && event.tags.map((tag) => <p className="tag">{tag}</p>)}
+      </div>
+      </>
     </div>
   );
 };
