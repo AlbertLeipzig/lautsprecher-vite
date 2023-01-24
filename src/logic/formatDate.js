@@ -3,7 +3,7 @@ both dates (from front and back end) must have the same format : dd / mm / yyyy 
 */
 
 /* 
-DATE STRING FROM FRONT END
+DATE STRING FROM FRONT END INPUT
 2023-01-03
 */
 
@@ -15,7 +15,7 @@ const convertDateStringFromInput = (date) => {
     parseInt(date.slice(0, 4)),
   ];
   const dateString = datePartials.toString();
-  return dateString;
+  return datePartials;
 };
 
 /*
@@ -24,13 +24,11 @@ DATE FROM BACK END
 */
 
 const convertDateStringFromDb = (date) => {
-  const datePartials = [
-    parseInt(date.slice(5, 7)),
-    parseInt(date.slice(8, 10)),
-    parseInt(date.slice(0, 4)),
-  ];
-  const dateString = datePartials.toString();
-  return dateString;
+  const day = date[0]?.day;
+  const month = date[0]?.month;
+  const year = date[0]?.year;
+  const datePartials = [day || 1, month || 1, year || 2023];
+  return datePartials;
 };
 
 export { convertDateStringFromInput, convertDateStringFromDb };

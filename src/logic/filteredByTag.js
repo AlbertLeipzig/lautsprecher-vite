@@ -1,6 +1,5 @@
 const filteredByTag = (events, filter) => {
   let filteredEvents = [];
-  /* console.log({ filter }); */
   const listEventWords = (document) => {
     let eventWords = [];
     document.name && eventWords.push(document.name);

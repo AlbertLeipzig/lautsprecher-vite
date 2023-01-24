@@ -8,17 +8,22 @@ const filteredByDate = (events, filter) => {
   let filteredEvents = [];
 
   // FORMAT INPUT DATE
-  const date = filter.date;
-  const time = filter.time || [0, 0];
-  const formattedInputDate = convertDateStringFromInput(date, time);
+  /* const time = filter.time || [0, 0]; */
+
+  const filterDate = filter.date;
+  const formattedInputDate = convertDateStringFromInput(filterDate);
+
+  /* console.log(formattedInputDate); */
 
   events.forEach((event) => {
-    const date = event.date;
-    const time = event.time || [0, 0];
-    const formattedEventDate = convertDateStringFromDb(date, time);
-    /* formattedEventDate === formattedInputDate && console.log({"input date : ", formattedInputDate}); */
-    formattedEventDate === formattedInputDate && filteredEvents.push(event);
+    const formattedDbDate = convertDateStringFromDb(event.date);
+
+    formattedDbDate[0] === formattedInputDate[0] &&
+      formattedDbDate[1] === formattedInputDate[1] &&
+      formattedDbDate[2] === formattedInputDate[2] &&
+      filteredEvents.push(event);
   });
+  console.log('filtered events : ', filteredEvents);
   return filteredEvents;
 };
 
