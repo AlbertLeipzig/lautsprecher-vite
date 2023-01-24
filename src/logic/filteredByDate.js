@@ -23,7 +23,7 @@ const filteredByDate = (events, filter) => {
       formattedDbDate[2] === formattedInputDate[2] &&
       filteredEvents.push(event);
   });
-  console.log('filtered events : ', filteredEvents);
+  /* console.log('filtered events BY DATE : ', filteredEvents); */
   return filteredEvents;
 };
 

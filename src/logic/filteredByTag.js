@@ -21,6 +21,8 @@ const filteredByTag = (events, filter) => {
       }
     });
   });
+  /* console.log('filtered events BY TAG : ', filteredEvents); */
+
   return filteredEvents;
 };
 

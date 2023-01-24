@@ -8,6 +8,7 @@ const eventFilter = (events, filter) => {
   const completeFilterEvent = () => {
     const eventByDate = filteredByDate(eventsArray, filter);
     const eventByTag = filteredByTag(eventByDate, filter);
+    console.log(eventByTag);
     return eventByTag;
   };
 
@@ -20,8 +21,8 @@ const eventFilter = (events, filter) => {
   } else {
     filteredEvents = events;
   }
-
-  /* return filteredEvents; */
+  console.log('filteredEvents, : ', filteredEvents);
+  return filteredEvents;
 };
 
 export { eventFilter };
