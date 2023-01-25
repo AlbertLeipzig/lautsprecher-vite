@@ -1,68 +1,40 @@
+// basic imports
 import { useEffect, useState, useContext } from 'react';
+import axios from 'axios';
+
+// import logic
 import { eventFilter } from '../logic/eventFilter';
+import { dataFetch } from '../logic/dataFetch';
+
+// import components
 import { DataContext } from '../context/DataContext';
 import { EventCard } from '../components/EventCard';
-import axios from 'axios';
+
+// main function
 export const Events = () => {
   const [filter, setFilter] = useState({ date: '', tag: '' });
-  const [events, setEvents] = useState([]);
-  const [filteredEvents, setFilteredEvents] = useState(events);
+  const [unfilteredEvents, setUnfilteredEvents] = useState([]);
+  const [filteredEvents, setFilteredEvents] = useState([]);
 
-  /* fetch data from api */
+  // fetch data
 
   const dataFetch = async () => {
-    try {
-      const res = await axios('http://localhost:5000/api/v1/events');
-      const data = await res.data;
-      setEvents(data);
-    } catch (e) {
-      console.error(e);
-    }
+    const res = await axios('http://localhost:5000/api/v1/events');
+    const data = await res.data;
+    return data;
   };
 
   useEffect(() => {
-    dataFetch();
+    const data = dataFetch();
+    data && console.log("data");
   }, []);
 
   /* filter events */
 
-  const testConsole = (filter, type) => {
-    console.log(
-      'we have ',
-      type,
-      'date is ',
-      typeof filter.date,
-      ' : ',
-      filter.date,
-      ' and tag is ',
-      typeof filter.tag,
-      ' : ',
-      filter.tag
-    );
-    console.log(filteredEvents);
-  };
-
-  useEffect(() => {
-    // no filter is defined
-    if (filter.date === '' && filter.tag === '') {
-      setFilteredEvents(events);
-      // date is defined
-    } else if (filter.date !== '' && filter.tag === '') {
-      setFilteredEvents(eventFilter(events, filter.date));
-      console.log('date is defined');
-      // tag is defined
-    } else if (filter.date === '' && filter.tag !== '') {
-      setFilteredEvents(eventFilter(events, filter.tag));
-      // both are defined
-    } else {
-      setFilteredEvents(events);
-    }
-  }, [filter, events]);
-
   return (
     <div className="events">
       <h1>Veranstaltungen</h1>
-      {events === undefined && (
+      {unfilteredEvents === undefined && (
         <div className="events__nodb">
           <img
             src="https://images.unsplash.com/photo-1617405207340-954e2e19755c?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NXx8ZW1wdHklMjBjb25jZXJ0fGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=600&q=60"
@@ -74,7 +46,7 @@ export const Events = () => {
           </h2>
         </div>
       )}
-      {events && (
+      {unfilteredEvents && (
         <div className="event__filter">
           <label htmlFor="event__filter">
             <input
