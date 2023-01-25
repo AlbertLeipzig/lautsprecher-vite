@@ -15,7 +15,7 @@ const convertDateStringFromInput = (date) => {
     year: date.slice(0, 4),
   };
 
-  const dateFormat = `${datePartials.day}-${datePartials.month}-${datePartials.year}`;
+  const dateFormat = `${datePartials.day}.${datePartials.month}.${datePartials.year}`;
 
   return dateFormat;
 };

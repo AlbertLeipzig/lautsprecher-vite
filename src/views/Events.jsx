@@ -29,7 +29,7 @@ export const Events = () => {
 
   useEffect(() => {
     dataFetch();
-    eventFilter(unfilteredEvents, filter);
+    setFilteredEvents(eventFilter(unfilteredEvents, filter));
   }, [filter]);
 
   /* filter events */

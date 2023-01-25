@@ -3,16 +3,19 @@ import { filteredByTag } from './filteredByTag';
 
 import { convertDateStringFromInput } from './formatDate';
 
-/* 
-const formattedDay = today.toLocaleString('de', {
-  year: 'numeric',
-  month: '2-digit',
-  day: '2-digit',
-});
-*/
+// formats input date
+
+const formatInputDate = (date) => {
+  return convertDateStringFromInput(date);
+};
+
+// implement a function that proves that every date has the right format
+
+// loops every date on every event (since there can be many dates on every event) and checks it's date is the same as filter's date
 
 export const eventFilter = (events, filter) => {
-  console.log('FIRST EVENT DATE : ', events[0]?.date[0]);
-  console.log('FIRST EVENT NAME : ', events[0]?.name);
-  console.log('FILTER DATE : ', convertDateStringFromInput(filter.date));
+  const formattedInputData = formatInputDate(filter.date);
+  filteredByDate(events, formattedInputData);
+  filteredByTag(events, filter.tag);
+  /* return filteredEvents; */
 };
