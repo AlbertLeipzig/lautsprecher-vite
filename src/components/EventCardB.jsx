@@ -41,37 +41,39 @@ export const EventCard = ({ event }) => {
 
   return (
     <div className="event-card">
-      <div className="event-card__main">
-        {image && <img src={image} alt={'event image'} />}
-        {event.title && <h3>{`TITLE : ${event?.title}`}</h3>}
-        {event.name && <h3>{` NAME : ${event?.name}`}</h3>}
-        {event.subtitle && (
+      <>
+        <div className="event-card__main">
+          {image && <img src={image} alt={'event image'} />}
+          {event.title && <h3>{`TITLE : ${event?.title}`}</h3>}
+          {event.name && <h3>{` NAME : ${event?.name}`}</h3>}
+          {event.subtitle && (
+            <p className="event-subtitle">{`SUBTITLE : ${
+              event?.subtitle || 'HI THERE'
+            }`}</p>
+          )}
           <p className="event-subtitle">{`SUBTITLE : ${
             event?.subtitle || 'HI THERE'
           }`}</p>
-        )}
-        <p className="event-subtitle">{`SUBTITLE : ${
-          event?.subtitle || 'HI THERE'
-        }`}</p>
-      </div>
-      <div className="event-card__content">
-        <div>
-          {event.date && <p>{`DATE : ${Object.toString(event?.date)}`}</p>}
-          {event.venue && <p>{`VENUE : ${event?.venue}`}</p>}
         </div>
-        {event.musicians &&
-          event.musicians.map((musician) => <p>MUSICIAN : {musician}</p>)}
-        {event.bands && event.bands.map((band) => <p>BAND : {band}</p>)}
-        {/* {event.description && <p>{event?.description.slice(0, 100)}</p>} */}
-        {event.price && <p>{`PRICE : ${event?.price.$numberDecimal} E`}</p>}
-        {event.link.length > 0 && (
-          <a href={event.link} target={'_blank'}>
-            + INFO
-          </a>
-        )}
-        {event.organizer && <p>{`ORGANIZER : ${event?.organizer}`}</p>}
-        {event.tags && event.tags.map((tag) => <p className="tag">{tag}</p>)}
-      </div>
+        <div className="event-card__content">
+          <div>
+            {event.date && <p>{`DATE : ${Object.toString(event?.date)}`}</p>}
+            {event.venue && <p>{`VENUE : ${event?.venue}`}</p>}
+          </div>
+          {event.musicians &&
+            event.musicians.map((musician) => <p>MUSICIAN : {musician}</p>)}
+          {event.bands && event.bands.map((band) => <p>BAND : {band}</p>)}
+          {/* {event.description && <p>{event?.description.slice(0, 100)}</p>} */}
+          {event.price && <p>{`PRICE : ${event?.price.$numberDecimal} E`}</p>}
+          {event.link.length > 0 && (
+            <a href={event.link} target={'_blank'}>
+              + INFO
+            </a>
+          )}
+          {event.organizer && <p>{`ORGANIZER : ${event?.organizer}`}</p>}
+          {event.tags && event.tags.map((tag) => <p className="tag">{tag}</p>)}
+        </div>
+      </>
     </div>
   );
 };

@@ -29,13 +29,36 @@ export const Events = () => {
 
   /* filter events */
 
+  const testConsole = (filter, type) => {
+    console.log(
+      'we have ',
+      type,
+      'date is ',
+      typeof filter.date,
+      ' : ',
+      filter.date,
+      ' and tag is ',
+      typeof filter.tag,
+      ' : ',
+      filter.tag
+    );
+    console.log(filteredEvents);
+  };
+
   useEffect(() => {
+    // no filter is defined
     if (filter.date === '' && filter.tag === '') {
-      setFilteredEvents(events.data);
-    } else if (filter.date || filter.tag) {
-      setFilteredEvents(eventFilter(events, filter));
+      setFilteredEvents(events);
+      // date is defined
+    } else if (filter.date !== '' && filter.tag === '') {
+      setFilteredEvents(eventFilter(events, filter.date));
+      console.log('date is defined');
+      // tag is defined
+    } else if (filter.date === '' && filter.tag !== '') {
+      setFilteredEvents(eventFilter(events, filter.tag));
+      // both are defined
     } else {
-      setFilteredEvents(events.data);
+      setFilteredEvents(events);
     }
   }, [filter, events]);
 
@@ -77,9 +100,7 @@ export const Events = () => {
       )}
       <div className="events-container">
         {filteredEvents &&
-          Object.values(filteredEvents).map((event) => (
-            <EventCard key={event._id} event={event} />
-          ))}
+          Object.values(filteredEvents).map((event) => <p>{event.name}</p>)}
       </div>
     </div>
   );
