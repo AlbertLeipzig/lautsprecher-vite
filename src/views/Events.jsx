@@ -8,15 +8,12 @@ export const Events = () => {
   const [events, setEvents] = useState([]);
   const [filteredEvents, setFilteredEvents] = useState(events);
 
-  const [name, setName] = useState('asdfasdf');
-
   /* fetch data from api */
 
   const dataFetch = async () => {
     try {
       const res = await axios('http://localhost:5000/api/v1/events');
       const data = await res.data;
-      /* setName(events[0].name); */
       setEvents(data);
     } catch (e) {
       console.error(e);
