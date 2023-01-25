@@ -4,7 +4,6 @@ import axios from 'axios';
 
 // import logic
 import { eventFilter } from '../logic/eventFilter';
-import { dataFetch } from '../logic/dataFetch';
 
 // import components
 import { DataContext } from '../context/DataContext';
@@ -19,15 +18,19 @@ export const Events = () => {
   // fetch data
 
   const dataFetch = async () => {
-    const res = await axios('http://localhost:5000/api/v1/events');
-    const data = await res.data;
-    return data;
+    try {
+      const res = await axios('http://localhost:5000/api/v1/events');
+      const data = await res.data;
+      setUnfilteredEvents(data);
+    } catch (e) {
+      console.error(e);
+    }
   };
 
   useEffect(() => {
-    const data = dataFetch();
-    data && console.log("data");
-  }, []);
+    dataFetch();
+    eventFilter(unfilteredEvents, filter);
+  }, [filter]);
 
   /* filter events */
 

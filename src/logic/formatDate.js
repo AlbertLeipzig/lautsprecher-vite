@@ -8,10 +8,16 @@ DATE FROM BACK END
 2023-01-09T18:33:01.366Z
 */
 
-const convertDateStringFromInput = () => {
-  /* const dateFormat = new Intl.DateTimeFormat('en-US').format(date); */
-  const date = new Date();
-  console.log(date)
+const convertDateStringFromInput = (date) => {
+  const datePartials = {
+    day: date.slice(8, 10),
+    month: date.slice(5, 7),
+    year: date.slice(0, 4),
+  };
+
+  const dateFormat = `${datePartials.day}-${datePartials.month}-${datePartials.year}`;
+
+  return dateFormat;
 };
 
 const convertDateStringFromDb = (date) => {

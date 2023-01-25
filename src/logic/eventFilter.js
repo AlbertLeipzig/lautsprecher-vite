@@ -1,6 +1,8 @@
 import { filteredByDate } from './filteredByDate';
 import { filteredByTag } from './filteredByTag';
 
+import { convertDateStringFromInput } from './formatDate';
+
 /* 
 const formattedDay = today.toLocaleString('de', {
   year: 'numeric',
@@ -10,6 +12,7 @@ const formattedDay = today.toLocaleString('de', {
 */
 
 export const eventFilter = (events, filter) => {
-  events && console.log(events);
-  filter && console.log(filter);
+  console.log('FIRST EVENT DATE : ', events[0]?.date[0]);
+  console.log('FIRST EVENT NAME : ', events[0]?.name);
+  console.log('FILTER DATE : ', convertDateStringFromInput(filter.date));
 };

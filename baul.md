@@ -1,30 +1,50 @@
-import {
-  convertDateStringFromInput,
-  convertDateStringFromDb,
-} from '../logic/formatDate';
+/* fetch data from api */
 
-const filteredByDate = (events, filter) => {
-  /* console.log('all events : ', events); */
+  const dataFetch = async () => {
+    try {
+      const res = await axios('http://localhost:5000/api/v1/events');
+      const data = await res.data;
+      setEvents(data);
+    } catch (e) {
+      console.error(e);
+    }
+  };
 
-  // FORMAT INPUT DATE
-  /* const time = filter.time || [0, 0]; */
+  useEffect(() => {
+    dataFetch();
+  }, []);
 
-  const filterDate = filter.date;
-  console.log('formatted data : ', convertDateStringFromInput(filterDate));
-  const formattedInputDate = convertDateStringFromInput(filterDate);
+  /* filter events */
 
-  /* console.log(formattedInputDate); */
+  const testConsole = (filter, type) => {
+    console.log(
+      'we have ',
+      type,
+      'date is ',
+      typeof filter.date,
+      ' : ',
+      filter.date,
+      ' and tag is ',
+      typeof filter.tag,
+      ' : ',
+      filter.tag
+    );
+    console.log(filteredEvents);
+  };
 
-  events.forEach((event) => {
-    const formattedDbDate = convertDateStringFromDb(event.date);
-
-    formattedDbDate[0] === formattedInputDate[0] &&
-      formattedDbDate[1] === formattedInputDate[1] &&
-      formattedDbDate[2] === formattedInputDate[2] &&
-      filteredEvents.push(event);
-  });
-  /* console.log('filtered events BY DATE : ', filteredEvents); */
-  return filteredEvents;
-};
-
-export { filteredByDate };
+  useEffect(() => {
+    // no filter is defined
+    if (filter.date === '' && filter.tag === '') {
+      setFilteredEvents(events);
+      // date is defined
+    } else if (filter.date !== '' && filter.tag === '') {
+      setFilteredEvents(eventFilter(events, filter.date));
+      console.log('date is defined');
+      // tag is defined
+    } else if (filter.date === '' && filter.tag !== '') {
+      setFilteredEvents(eventFilter(events, filter.tag));
+      // both are defined
+    } else {
+      setFilteredEvents(events);
+    }
+  }, [filter, events]);
