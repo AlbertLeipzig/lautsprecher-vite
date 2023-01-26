@@ -15,7 +15,17 @@ const formatInputDate = (date) => {
 
 export const eventFilter = (events, filter) => {
   const formattedInputData = formatInputDate(filter.date);
-  filteredByDate(events, formattedInputData);
-  filteredByTag(events, filter.tag);
-  /* return filteredEvents; */
+  let filteredEvents = [];
+  // it must compare both filter and "delete" every event that doesn't match
+  // this way there's no "if else statement" and it's - hopefully - easier to read
+
+  const dateEvents = filteredByDate(events, formattedInputData);
+  const tagEvents = filteredByTag(events, filter.tag);
+
+  /* dateEvents &&
+    dateEvents.forEach((event) => {
+      
+    }); */
+
+  return filteredEvents;
 };

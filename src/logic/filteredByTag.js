@@ -2,13 +2,20 @@
 
 const listEventWords = (event) => {
   let eventWords = [];
-  event.name && eventWords.push(event.name.toLowerCase());
-  event.firstName && eventWords.push(event.firstName.toLowerCase());
-  event.lastName && eventWords.push(event.lastName.toLowerCase());
-  event.location && eventWords.push(event.location.toLowerCase());
-  event.tags.forEach((tag) => {
+  event.name && eventWords.push(event?.name.toLowerCase());
+  event.firstName && eventWords.push(event?.firstName.toLowerCase());
+  event.lastName && eventWords.push(event?.lastName.toLowerCase());
+  event.musicians &&
+    eventWords.push(
+      event?.musicians.forEach((musician) => musician.toLowerCase())
+    );
+  event.bands &&
+    eventWords.push(event?.bands.forEach((band) => band.toLowerCase()));
+  event.venue && eventWords.push(event?.venue.toLowerCase());
+  event?.tags.forEach((tag) => {
     eventWords.push(tag.toLowerCase());
   });
+  console.log(eventWords);
   return eventWords;
 };
 
@@ -23,6 +30,8 @@ const listFilterWords = (filterArray) => {
   return filterWords;
 };
 
+// compares the filter words to the event words and "deletes" every word that doesn't match
+
 const filteredByTag = (events, filter) => {
   let filteredEvents = [];
   const filterTagsArray = listFilterWords(filter);
@@ -32,7 +41,8 @@ const filteredByTag = (events, filter) => {
     eventTagsArray.forEach((tag) => {
       filterTagsArray.includes(tag) ? filteredEvents.push(event) : null;
     });
-    console.log(filteredEvents);
+    console.log('NEW QUERY');
+    console.log('FILTERED EVENTS : ', filteredEvents);
   });
   /* console.log('filtered events BY TAG : ', filteredEvents); */
 
