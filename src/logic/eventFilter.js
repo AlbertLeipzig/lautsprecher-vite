@@ -15,11 +15,7 @@ const formatInputDate = (date) => {
 
 export const eventFilter = (events, filter) => {
   let filteredEvents = [];
-  filteredByDate(events, filter);
-  /* console.log(filteredByDate(events, filter)); */
-  /* console.log(filteredByTag(events, filter)); */
-  /*   filteredEvents.push(filteredByDate(events, filter));
-  filteredEvents.push(filteredByTag(events, filter)); */
-  return filteredByDate(filteredEvents);
-  /* return filteredEvents; */
+  console.log("FILTERED BY DATE : ", filteredByDate(events, filter));
+  console.log("FILTERED BY TAG : ", filteredByTag(filter, events));
+  return filteredEvents;
 };

@@ -5,8 +5,6 @@ import {
 
 const filterSingleEvent = (event, filter) => {
   const filterDate = convertDateStringFromInput(filter.date);
-  console.log(filterDate);
-  console.log(event.date);
   return event.date.includes(filterDate);
 };
 
@@ -15,7 +13,6 @@ const filteredByDate = (events, filter) => {
   events.forEach((event) => {
     event.date && filteredEvents.push(filterSingleEvent(event, filter));
   });
-  console.log(filteredEvents);
   return filteredEvents;
 };
 export { filteredByDate };
