@@ -1,5 +1,5 @@
 import { filteredByDate } from './filteredByDate';
-import { filteredByTag } from './filteredByTag';
+import { filteredByTag } from './filteredByTag.js';
 
 import { convertDateStringFromInput } from './formatDate';
 
@@ -14,18 +14,12 @@ const formatInputDate = (date) => {
 // loops every date on every event (since there can be many dates on every event) and checks it's date is the same as filter's date
 
 export const eventFilter = (events, filter) => {
-  const formattedInputData = formatInputDate(filter.date);
   let filteredEvents = [];
-  // it must compare both filter and "delete" every event that doesn't match
-  // this way there's no "if else statement" and it's - hopefully - easier to read
-
-  const dateEvents = filteredByDate(events, formattedInputData);
-  const tagEvents = filteredByTag(events, filter.tag);
-
-  /* dateEvents &&
-    dateEvents.forEach((event) => {
-      
-    }); */
-
-  return filteredEvents;
+  filteredByDate(events, filter);
+  /* console.log(filteredByDate(events, filter)); */
+  /* console.log(filteredByTag(events, filter)); */
+  /*   filteredEvents.push(filteredByDate(events, filter));
+  filteredEvents.push(filteredByTag(events, filter)); */
+  return filteredByDate(filteredEvents);
+  /* return filteredEvents; */
 };

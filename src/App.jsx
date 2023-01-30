@@ -11,8 +11,6 @@ import { Login } from './views/Login';
 import { Admin } from './views/Admin';
 import './scss/main.scss';
 
-// delete after learning
-
 function App() {
   return (
     <BrowserRouter>

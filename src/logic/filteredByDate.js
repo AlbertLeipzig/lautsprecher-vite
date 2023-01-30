@@ -1,5 +1,13 @@
+import {
+  convertDateStringFromInput,
+  convertDateStringFromDb,
+} from './formatDate.js';
+
 const filterSingleEvent = (event, filter) => {
-  return event.date.includes(filter) ? null : event;
+  const filterDate = convertDateStringFromInput(filter.date);
+  console.log(filterDate);
+  console.log(event.date);
+  return event.date.includes(filterDate);
 };
 
 const filteredByDate = (events, filter) => {
@@ -7,6 +15,7 @@ const filteredByDate = (events, filter) => {
   events.forEach((event) => {
     event.date && filteredEvents.push(filterSingleEvent(event, filter));
   });
+  console.log(filteredEvents);
   return filteredEvents;
 };
 export { filteredByDate };

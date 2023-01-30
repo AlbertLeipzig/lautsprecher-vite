@@ -1,52 +1,17 @@
-// list all the words in the document that can be used to filter events
+/* we pass a filter (string) and an array of events (every event is an object) */
+/* we turn the filter into an array of words */
+/* for every event we compare it's words with the filter. If there's a match we send a true back */
+/* we go thru the events array, and for every event we do #3 */
+/* we filter the events array, and we keep only the events that match the filter */
+/* we return the filtered array */
 
-const listEventWords = (event) => {
-  let eventWords = [];
-  event.name && eventWords.push(event?.name.toLowerCase());
-  event.firstName && eventWords.push(event?.firstName.toLowerCase());
-  event.lastName && eventWords.push(event?.lastName.toLowerCase());
-  event.musicians &&
-    eventWords.push(
-      event?.musicians.forEach((musician) => musician.toLowerCase())
-    );
-  event.bands &&
-    eventWords.push(event?.bands.forEach((band) => band.toLowerCase()));
-  event.venue && eventWords.push(event?.venue.toLowerCase());
-  event?.tags.forEach((tag) => {
-    eventWords.push(tag.toLowerCase());
-  });
-  console.log(eventWords);
-  return eventWords;
+export const filteredByTag = (filter, events) => {
+  const filterWords = filter;
+  /* const filterEvent = (event) => {
+    const eventWords = event.tags.split(' ');
+    return filterWords.some((filterWord) => eventWords.includes(filterWord));
+  }; */
+  const stepTest = filterWords;
+  return stepTest;
+  /* return events.filter(filterEvent); */
 };
-
-// list every word in the filter into an array
-
-const listFilterWords = (filterArray) => {
-  let filterWords = [];
-  const splittedString = filterArray.split(' ');
-  splittedString.forEach((word) => {
-    filterWords.push(word.toLowerCase());
-  });
-  return filterWords;
-};
-
-// compares the filter words to the event words and "deletes" every word that doesn't match
-
-const filteredByTag = (events, filter) => {
-  let filteredEvents = [];
-  const filterTagsArray = listFilterWords(filter);
-
-  events.forEach((event) => {
-    const eventTagsArray = listEventWords(event);
-    eventTagsArray.forEach((tag) => {
-      filterTagsArray.includes(tag) ? filteredEvents.push(event) : null;
-    });
-    console.log('NEW QUERY');
-    console.log('FILTERED EVENTS : ', filteredEvents);
-  });
-  /* console.log('filtered events BY TAG : ', filteredEvents); */
-
-  return filteredEvents;
-};
-
-export { filteredByTag };
