@@ -5,7 +5,7 @@ import {
 
 const filterSingleEvent = (event, filter) => {
   const filterDate = convertDateStringFromInput(filter.date);
-  return event.date.includes(filterDate);
+  return event.date.includes(filterDate) && event
 };
 
 const filteredByDate = (events, filter) => {
