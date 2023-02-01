@@ -62,7 +62,7 @@ const formattedFilterTags = (filter) => {
   return formattedTags;
 };
 
-export const filteredByTag = (filter, events) => {
+export const filteredByTag = (events, filter) => {
   let filteredEvents = [];
 
   const filterTagsArray = formattedFilterTags(filter);

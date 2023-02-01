@@ -5,30 +5,30 @@ import { convertDateStringFromInput } from './formatDate';
 
 // formats input date
 
-const formatInputDate = (date) => {
+/* const formatInputDate = (date) => {
   return convertDateStringFromInput(date);
-};
+}; */
 
-// implement a function that proves that every date has the right format
-
-// loops every date on every event (since there can be many dates on every event) and checks it's date is the same as filter's date
+/* const totalFilter = (dateFilter, tagFilter) => {
+  if (dateFilter === false && tagFilter === []) {
+    return 'tagFilter';
+  } else if (dateFilter === [] && tagFilter === undefined) {
+    return 'dateFilter';
+  } else {
+    //return dateFilter.filter((date) => tagFilter.includes(date));
+    return 'both';
+  }
+}; */
 
 export const eventFilter = (events, filter) => {
-  let filteredEvents = events;
-  if (filter.date && filter.tag) {
-    let doubleFilter = [];
-    const dateFilteredEvents = filteredByDate(events, filter);
-    doubleFilter.push(filteredByTag(filter, dateFilteredEvents));
-    filteredEvents = doubleFilter;
-  } else if (filter.date) {
-    filteredEvents = filteredByDate(events, filter);
-  } else if (filter.tag) {
-    filteredEvents = filteredByTag(filter, events);
-  } else {
-    filteredEvents = events;
-  }
-  // console.log("FILTERED BY DATE : ", filteredByDate(events, filter));
-  // console.log("FILTERED BY TAG : ", filteredByTag(filter, events));
-  console.log('filteredEvents : ', filteredEvents);
+  let filteredEvents = [];
+  //console.log(filter);
+
+  const tagEvents = filteredByTag(events, filter) || events;
+  console.log(events);
+  //console.log('TAG EVENTS : ', tagEvents);
+  const dateEvents = filteredByDate(tagEvents, filter) || tagEvents;
+  //console.log('DATE EVENTS : ', dateEvents);
+  filteredEvents = dateEvents;
   return filteredEvents;
 };
