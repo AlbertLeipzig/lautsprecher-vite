@@ -66,6 +66,8 @@
 
   &__filter {
     display: flex;
+    justify-content: center;
+    margin: 5vh 0;
     @media screen and (max-width: 768px) {
       flex-direction: column;
     }
@@ -107,15 +109,7 @@
     text-align: center;
     margin: 5vh 0;
   }
-  &__nodb {
-    img {
-      display: block;
-      margin: 3vh auto 0;
-      border-radius: 50%;
-      height: 50vh;
-      aspect-ratio: 1/1;
-    }
-  }
+
   &__loading {
     text-align: center;
     animation: loading 1.5s infinite;
@@ -133,8 +127,12 @@
     animation: typing 3.5s steps(40, end), blink-caret 1.5s step-end infinite;
   }
   &__error-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     width: fit-content;
-    margin: 10vh auto;
+    margin: 0 auto;
+    gap: 5vh;
   }
 }
 /* loading effect */
