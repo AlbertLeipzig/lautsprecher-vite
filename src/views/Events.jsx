@@ -4,8 +4,10 @@ import { eventFilter } from '../logic/eventFilter';
 import axios from 'axios';
 export const Events = () => {
   const [filter, setFilter] = useState({ date: '', tag: '' });
-  /* const [events, setEvents] = useState([]); */
+  const [error, setError] = useState('');
+  const [loadingEvents, setLoadingEvents] = useState(true);
   const { events, setEvents } = useContext(DataContext);
+
   const [filteredEvents, setFilteredEvents] = useState(events);
 
   const recoverData = () => {
@@ -13,9 +15,15 @@ export const Events = () => {
       .get('http://localhost:5000/api/v1/events')
       .then((res) => {
         const data = res.data;
+        setError(undefined);
+        setLoadingEvents(false);
         setEvents(data);
       })
       .catch((e) => {
+        setLoadingEvents(false);
+        setError(
+          `Es tut uns leid, derzeit ist keine Veranstaltung vorhanden. Kommt bitte auf eine späteren Zeitpunkt zurück. Wir freuen uns auf Dich!`
+        );
         console.error(e);
       });
   };
@@ -46,6 +54,7 @@ export const Events = () => {
   return (
     <div className="events">
       <h1>Veranstaltungen</h1>
+
       {events && events === undefined && (
         <div className="events__nodb">
           <img
@@ -77,6 +86,14 @@ export const Events = () => {
               }
             />
           </label>
+        </div>
+      )}
+      {loadingEvents !== false && (
+        <p className="events__loading">Die Events sind gleich da ...</p>
+      )}
+      {error && (
+        <div className="events__error-container">
+          <p className="events__error">{error}</p>
         </div>
       )}
       <div className="events-container">
