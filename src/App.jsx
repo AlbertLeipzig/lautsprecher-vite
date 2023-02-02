@@ -5,6 +5,7 @@ import { Contact } from './views/Contact.jsx';
 import { Events } from './views/Events.jsx';
 import { Impressum } from './views/Impressum.jsx';
 import { LandingPage } from './views/LandingPage.jsx';
+import { Collaborate } from './views/Collaborate.jsx';
 import { Header } from './components/Header.jsx';
 import { Footer } from './components/Footer.jsx';
 import { Projects } from './views/Projects.jsx';
@@ -26,6 +27,7 @@ function App() {
               <Route path="/contact" element={<Contact />} />
               <Route path="/impressum" element={<Impressum />} />
               <Route path="/projects" element={<Projects />} />
+              <Route path="/collaborate" element={<Collaborate />} />
             </Routes>
           </DataProvider>
         </main>
