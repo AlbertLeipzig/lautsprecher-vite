@@ -31,17 +31,17 @@ export const LandingPage = () => {
           </Link>
         </li>
         <li>
-          <Link to="/events">
+          <Link to="/about">
             <div className="landing-page__container2">Was ist Lautsprecher</div>
           </Link>
         </li>
         <li>
-          <Link to="/events">
+          <Link to="/projects">
             <div className="landing-page__container3">Projekte</div>
           </Link>
         </li>
         <li>
-          <Link to="/events">
+          <Link to="/contact">
             <div className="landing-page__container4">Mitmachen</div>
           </Link>
         </li>

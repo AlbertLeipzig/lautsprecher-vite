@@ -1,0 +1,43 @@
+@use '../components/boxes.scss' as *;
+@use '../utilities/colors.scss' as *;
+
+$folderColor: orange;
+.projects {
+  menu {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    //border-top: 3px solid red;
+    box-shadow: 1.5px -2.5px 0.75px 0.5px $folderColor;
+    li {
+      padding: 0.5em 0.75em;
+      border-radius: 0;
+      box-shadow: 1.5px -2.5px 0.75px 0.5px $folderColor;
+      margin: 0;
+      transition: 300ms;
+
+      &:hover {
+        color: $secondaryColor;
+      }
+      &:focus {
+        color: $tertiaryColor;
+      }
+      &:active {
+        color: $tertiaryColor;
+      }
+    }
+  }
+  &__content {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2vh;
+    img {
+      width: 80%;
+      aspect-ratio: 1/1;
+      border-radius: $borderRadius;
+      object-fit: cover;
+    }
+  }
+}
