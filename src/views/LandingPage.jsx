@@ -1,9 +1,10 @@
 import { Link } from 'react-router-dom';
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useContext } from 'react';
+import { DataContext } from '../context/DataContext';
 import axios from 'axios';
 
 export const LandingPage = () => {
-  const [events, setEvents] = useState([]);
+  const { setEvents } = useContext(DataContext);
 
   useEffect(() => {
     axios
