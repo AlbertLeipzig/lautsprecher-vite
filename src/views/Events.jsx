@@ -1,46 +1,30 @@
 import { useEffect, useState, useContext } from 'react';
-import { eventFilter } from '../logic/eventFilter';
 import { DataContext } from '../context/DataContext';
-import { EventCard } from '../components/EventCard';
+import { eventFilter } from '../logic/eventFilter';
 import axios from 'axios';
 export const Events = () => {
   const [filter, setFilter] = useState({ date: '', tag: '' });
-  const [events, setEvents] = useState([]);
+  /* const [events, setEvents] = useState([]); */
+  const { events, setEvents } = useContext(DataContext);
   const [filteredEvents, setFilteredEvents] = useState(events);
 
-  /* fetch data from api */
-
-  const dataFetch = async () => {
-    try {
-      const res = await axios('http://localhost:5000/api/v1/events');
-      const data = await res.data;
-      setEvents(data);
-    } catch (e) {
-      console.error(e);
-    }
+  const recoverData = () => {
+    axios
+      .get('http://localhost:5000/api/v1/events')
+      .then((res) => {
+        const data = res.data;
+        setEvents(data);
+      })
+      .catch((e) => {
+        console.error(e);
+      });
   };
 
-  useEffect(() => {
-    dataFetch();
-  }, []);
+  // in case there's no data
+
+  events.length <= 0 && recoverData();
 
   /* filter events */
-
-  const testConsole = (filter, type) => {
-    console.log(
-      'we have ',
-      type,
-      'date is ',
-      typeof filter.date,
-      ' : ',
-      filter.date,
-      ' and tag is ',
-      typeof filter.tag,
-      ' : ',
-      filter.tag
-    );
-    console.log(filteredEvents);
-  };
 
   useEffect(() => {
     // no filter is defined
@@ -62,7 +46,7 @@ export const Events = () => {
   return (
     <div className="events">
       <h1>Veranstaltungen</h1>
-      {events === undefined && (
+      {events && events === undefined && (
         <div className="events__nodb">
           <img
             src="https://images.unsplash.com/photo-1617405207340-954e2e19755c?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NXx8ZW1wdHklMjBjb25jZXJ0fGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=600&q=60"
