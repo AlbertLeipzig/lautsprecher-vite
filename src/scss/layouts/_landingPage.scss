@@ -1,0 +1,72 @@
+@use '../components/list.scss' as *;
+
+$gradientPercent: 35%;
+
+menu {
+  display: flex;
+  margin: 4vh 0;
+  flex-direction: column;
+  gap: 1em;
+  li {
+    margin: 0;
+    a {
+      padding: 0;
+    }
+  }
+}
+.landing-page {
+  h1 {
+    padding: 2em 0;
+  }
+
+  &__hero {
+    background-image: url('https://images.unsplash.com/photo-1511379938547-c1f69419868d?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NHx8bXVzaWN8ZW58MHx8MHx8&auto=format&fit=crop&w=500&q=60');
+    background-size: cover;
+  }
+  &__container1 {
+    @include list;
+    padding: 3em 0;
+    background-image: linear-gradient(
+        to right,
+        #ffffff $gradientPercent,
+        hsl(0, 0%, 90%, 0)
+      ),
+      url('https://images.unsplash.com/photo-1661956602926-db6b25f75947?ixlib=rb-4.0.3&ixid=MnwxMjA3fDF8MHxlZGl0b3JpYWwtZmVlZHwxfHx8ZW58MHx8fHw%3D&auto=format&fit=crop&w=500&q=60');
+    background-size: cover;
+  }
+  &__container2 {
+    @include list;
+    padding: 3em 0;
+
+    background-image: linear-gradient(
+        to right,
+        #ffffff $gradientPercent,
+        hsl(0, 0%, 90%, 0)
+      ),
+      url('https://images.unsplash.com/photo-1517816428104-797678c7cf0c?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8M3x8bWVnYXBob25lfGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=500&q=60');
+    background-size: cover;
+  }
+  &__container3 {
+    @include list;
+    padding: 3em 0;
+    background-image: linear-gradient(
+        to right,
+        #ffffff $gradientPercent,
+        hsl(0, 0%, 90%, 0)
+      ),
+      url('https://images.unsplash.com/photo-1531403009284-440f080d1e12?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8M3x8cHJvamVjdHN8ZW58MHx8MHx8&auto=format&fit=crop&w=500&q=60');
+    background-size: cover;
+  }
+  &__container4 {
+    @include list;
+    padding: 3em 0;
+
+    background-image: linear-gradient(
+        to right,
+        #ffffff $gradientPercent,
+        hsl(0, 0%, 90%, 0)
+      ),
+      url('https://images.unsplash.com/photo-1522202176988-66273c2fd55f?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NHx8Y29sbGFib3JhdGV8ZW58MHx8MHx8&auto=format&fit=crop&w=500&q=60');
+    background-size: cover;
+  }
+}

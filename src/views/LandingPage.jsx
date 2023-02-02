@@ -1,41 +1,35 @@
+import { Link } from 'react-router-dom';
+
 export const LandingPage = () => {
-/*   useEffect(() => {
-    axios
-      .get('http://localhost:6000/api/v1/events')
-      .then((res) => {
-        console.log('RES : ', res);
-        console.log('DATA : ', res.data);
-      })
-      .catch((error) => {
-        console.log(error.toJSON());
-      });
-  }, []); */
-  /* 
-
-axios.post("http://localhost:5000/auth/login", loginData)
-      .then((result) => {
-          console.log(result.data);
-          await getLoggedIn();
-          history.push("/player");
-        })
-      .catch(err => {
-         console.log(err)
-      })
-
- */
-
-  /*  useEffect(() => {
-    axios
-      .get(`http://localhost:6000/api/v1/events`)
-      .then((res) => console.log('RES : ', res))
-      .then((res) => console.log('DATA : ', res.data))
-      .catch((error) => {
-        console.log(error.response.data);
-      });
-  }, []); */
   return (
     <div className="landing-page">
-      <h1>Landing Page</h1>
+      <div className="landing-page__hero">
+        <h1>Lautsprecher</h1>
+      </div>
+      <menu>
+        <li>
+          <Link to="/events">
+            <div className="landing-page__container1">
+              Veranstaltungskalender
+            </div>
+          </Link>
+        </li>
+        <li>
+          <Link to="/events">
+            <div className="landing-page__container2">Was ist Lautsprecher</div>
+          </Link>
+        </li>
+        <li>
+          <Link to="/events">
+            <div className="landing-page__container3">Projekte</div>
+          </Link>
+        </li>
+        <li>
+          <Link to="/events">
+            <div className="landing-page__container4">Mitmachen</div>
+          </Link>
+        </li>
+      </menu>
     </div>
   );
 };
