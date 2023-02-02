@@ -1,0 +1,10 @@
+@use './boxes' as *;
+
+@mixin list {
+  list-style: none;
+  border-radius: $borderRadius;
+}
+
+li {
+  @include list;
+}

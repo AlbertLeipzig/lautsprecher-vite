@@ -1,14 +1,13 @@
 import { DataProvider } from './context/DataContext';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import { About } from './views/About';
-import { Contact } from './views/Contact';
-import { Events } from './views/Events';
-import { Impressum } from './views/Impressum';
-import { LandingPage } from './views/LandingPage';
-import { Header } from './components/Header';
-import { Footer } from './components/Footer';
-import { Login } from './views/Login';
-import { Admin } from './views/Admin';
+import { About } from './views/About.jsx';
+import { Contact } from './views/Contact.jsx';
+import { Events } from './views/Events.jsx';
+import { Impressum } from './views/Impressum.jsx';
+import { LandingPage } from './views/LandingPage.jsx';
+import { Header } from './components/Header.jsx';
+import { Footer } from './components/Footer.jsx';
+import { Projects } from './views/Projects.jsx';
 import './scss/main.scss';
 
 // delete after learning
@@ -26,8 +25,7 @@ function App() {
               <Route path="/about" element={<About />} />
               <Route path="/contact" element={<Contact />} />
               <Route path="/impressum" element={<Impressum />} />
-              <Route path="/login" element={<Login />} />
-              <Route path="/admin" element={<Admin />} />
+              <Route path="/projects" element={<Projects />} />
             </Routes>
           </DataProvider>
         </main>
