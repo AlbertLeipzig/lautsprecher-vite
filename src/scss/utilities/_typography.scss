@@ -23,6 +23,7 @@ h2 {
   font-weight: 700;
   color: $primaryColor;
   margin-bottom: 1em;
+  padding: 2em 0;
 }
 
 h3 {
@@ -38,6 +39,7 @@ li,
 label,
 input,
 textarea,
+mark,
 button {
   font-family: $primaryFont;
   font-size: 1.8rem;
@@ -45,6 +47,12 @@ button {
   color: $grey;
   line-height: 1.7em;
 }
+
+mark {
+  font-weight: 700;
+  background: none;
+}
+
 a {
   /* transition: 200ms; */
   padding: 0.5em;
