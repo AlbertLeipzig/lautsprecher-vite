@@ -1,3 +1,4 @@
+import {Link} from 'react-router-dom'
 export const Contact = () => {
   return (
     <div className="contact">
@@ -28,6 +29,7 @@ export const Contact = () => {
         </label>
         <button type="submit">Senden</button>
       </form>
+      <p>Oder schreib Uns eine E-Mail auf <a href="mailto:mail@mail.com">mail@mail.com</a></p>
     </div>
   );
 };
