@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { DataProvider } from './context/DataContext';
+import { BurgerContext } from './context/BurgerContext.jsx';
 import { TitleContext } from './context/TitleContext';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { About } from './views/About.jsx';
@@ -19,13 +20,17 @@ import './scss/main.scss';
 
 function App() {
   const [title, setTitle] = useState('Lautsprecher');
+  const [burgerState, setBurgerState] = useState('closed');
+
   return (
     <BrowserRouter>
       <div className="App">
-        <Header />
+        <BurgerContext.Provider value={{ burgerState, setBurgerState }}>
+          <Header />
+        </BurgerContext.Provider>
         <main>
           <DataProvider>
-            <TitleContext.Provider value={{title, setTitle}}>
+            <TitleContext.Provider value={{ title, setTitle }}>
               <Routes>
                 <Route exact path="/" element={<LandingPage />} />
                 <Route path="/events" element={<Events />} />

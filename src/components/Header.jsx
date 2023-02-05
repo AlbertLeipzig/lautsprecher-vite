@@ -1,7 +1,10 @@
 import { Link } from 'react-router-dom';
+import { Burger } from './Burger';
 import logo from '../../public/favicon.jpg';
 import { useContext } from 'react';
+import { BurgerContext } from '../context/BurgerContext.jsx';
 export const Header = () => {
+  const { burgerState } = useContext(BurgerContext);
   return (
     <header>
       <div className="header__logo">
@@ -13,12 +16,8 @@ export const Header = () => {
           <p className="header__subtitle">Musik Magazine der Stadt Leipzig</p>
         </Link>
       </div>
-      <div className="burger-menu">
-        <div className="line1"></div>
-        <div className="line2"></div>
-        <div className="line3"></div>
-      </div>
-      <nav className="header__nav">
+      <Burger />
+      <nav className={`header__nav--${burgerState}`}>
         <Link to="/events" className="header-nav__link">
           Veranstaltungen
         </Link>

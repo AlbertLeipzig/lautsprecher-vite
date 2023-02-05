@@ -1,9 +1,11 @@
 @use '../utilities/utilities' as *;
 
 header {
-  display: flex;
-  justify-content: space-between;
-  align-items: start;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-areas:
+    'logo burger'
+    'nav nav';
   padding: 2vh 5vw;
   background-color: $white;
 
@@ -26,6 +28,7 @@ header {
   &__logo {
     padding: 0;
     margin: 0;
+    grid-area: logo;
     a {
       padding: 0;
     }
@@ -48,9 +51,24 @@ header {
   }
 
   &__nav {
-    display: none;
-    @media screen and (min-width: 768px) {
+    &--closed {
+      display: none;
+      @media screen and (min-width: 768px) {
+        display: flex;
+      }
+    }
+    &--open {
       display: flex;
+      padding: 0;
+      margin: 1vh 0;
+      grid-area: nav;
+      background-color: $primaryColor;
+      a {
+        color: white;
+      }
     }
   }
+}
+.burger-menu {
+  grid-area: burger;
 }
