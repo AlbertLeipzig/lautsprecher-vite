@@ -1,5 +1,6 @@
 import { useEffect, useState, useContext } from 'react';
-import { DataContext } from '../context/DataContext';
+import { DataContext } from '../context/DataContext.jsx';
+import { TitleContext } from '../context/TitleContext.jsx';
 import { eventFilter } from '../logic/eventFilter';
 import axios from 'axios';
 export const Events = () => {
@@ -7,8 +8,10 @@ export const Events = () => {
   const [error, setError] = useState('');
   const [loadingEvents, setLoadingEvents] = useState(true);
   const { events, setEvents } = useContext(DataContext);
-
+  const { title, setTitle } = useContext(TitleContext);
   const [filteredEvents, setFilteredEvents] = useState(events);
+
+  setTitle('Veranstaltungen');
 
   const recoverData = () => {
     axios
@@ -53,7 +56,7 @@ export const Events = () => {
 
   return (
     <div className="events">
-      <h1>Veranstaltungen</h1>
+      {title && <h1>{title}</h1>}
       {events && (
         <div className="event__filter">
           <label htmlFor="event__filter">
