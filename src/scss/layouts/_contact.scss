@@ -21,6 +21,9 @@ textarea {
   padding: 0 10px;
   border: 1px solid $primaryColor;
 }
+textarea {
+  height: 160px;
+}
 
 .contact {
   margin-bottom: 10vh;
@@ -48,5 +51,6 @@ textarea {
   p {
     text-align: center;
     margin: 5vh 0;
+    color: $primaryColor;
   }
 }

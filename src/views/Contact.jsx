@@ -1,19 +1,19 @@
-import {Link} from 'react-router-dom'
+import { Link } from 'react-router-dom';
 export const Contact = () => {
   return (
     <div className="contact">
       <h1>Contact</h1>
       <form action="">
         <label htmlFor="name">
-          Vorname
+          Vorname *
           <input type="text" id="fname" required maxLength={20} />
         </label>
         <label htmlFor="name">
-          Nachname
+          Nachname *
           <input type="text" id="lname" required maxLength={20} />
         </label>
         <label htmlFor="name">
-          Email
+          Email *
           <input type="email" id="email" required maxLength={20} />
         </label>
         <label htmlFor="message">
@@ -29,7 +29,11 @@ export const Contact = () => {
         </label>
         <button type="submit">Senden</button>
       </form>
-      <p>Oder schreib Uns eine E-Mail auf <a href="mailto:mail@mail.com">mail@mail.com</a></p>
+      <p>* erförderliche Felder</p>
+      <p>
+        Oder schreib Uns eine E-Mail auf{' '}
+        <a href="mailto:mail@mail.com">mail@mail.com</a>
+      </p>
     </div>
   );
 };
