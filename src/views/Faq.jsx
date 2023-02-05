@@ -78,8 +78,16 @@ export const Faq = () => {
         <h2>Kann ich bei Lautsprecher mitmachen?</h2>
         <p>
           Na klar, sehr gerne!{' '}
-          <Link to={"/contact"}>Schreib einfach uns und wir werden Dich kontaktieren!</Link>
+          <Link to={'/contact'}>
+            Schreib einfach uns und wir werden Dich kontaktieren!
+          </Link>
         </p>
+      </section>
+      <section>
+        <h2>Findest Du die Antwort auf Deine Frage nicht?</h2>
+        <Link to={'/contact'}>
+          Kontaktier uns bitte, und wir werden versuchen die zu beantworten!
+        </Link>
       </section>
     </div>
   );
