@@ -9,6 +9,7 @@ import { Collaborate } from './views/Collaborate.jsx';
 import { Header } from './components/Header.jsx';
 import { Footer } from './components/Footer.jsx';
 import { Projects } from './views/Projects.jsx';
+import { NotFound } from './views/NotFound';
 import './scss/main.scss';
 
 // delete after learning
@@ -28,6 +29,7 @@ function App() {
               <Route path="/impressum" element={<Impressum />} />
               <Route path="/projects" element={<Projects />} />
               <Route path="/collaborate" element={<Collaborate />} />
+              <Route path="*" element={<NotFound />} />
             </Routes>
           </DataProvider>
         </main>

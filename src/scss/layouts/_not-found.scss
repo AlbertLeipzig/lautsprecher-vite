@@ -1,0 +1,15 @@
+.not-found {
+  &__container {
+    width: fit-content;
+    margin: 5vh auto;
+    p {
+      line-height: 3.6em;
+    }
+    img {
+      margin: 5vh 0;
+    }
+  }
+  &__uri {
+    font-style: italic;
+  }
+}
