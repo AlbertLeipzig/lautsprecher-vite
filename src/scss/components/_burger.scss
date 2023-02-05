@@ -1,8 +1,11 @@
+@use '../utilities/colors.scss' as *;
+$animation-duration: 6s;
 @mixin burger-line {
-  width: 30px;
+  width: 40px;
   height: 3px;
-  background-color: #4c4c4c;
+  background-color: $grey;
   border-radius: 5px;
+  animation: burger-line $animation-duration infinite;
 }
 .burger-menu {
   display: flex;
@@ -10,14 +13,103 @@
   justify-content: center;
   align-items: center;
   gap: 5px;
+  position: relative;
+  left: 20px;
+
+  &--open {
+    position: relative;
+    inset: 0 0 0 20px;
+  }
+  /* 
+  for a music key icon
+  &__key {
+    color: $primaryColor;
+    width: 40px;
+    height: 40px;
+    position: absolute;
+    inset: 20px 30px auto auto;
+  } */
 
   .line1 {
-    @include burger-line;
+    &__closed {
+      @include burger-line;
+      animation-delay: calc($animation-duration * 4 / 5);
+    }
+    &__open {
+      @include burger-line;
+      animation: none;
+      transform: rotate(-45deg);
+      position: relative;
+      top: 8px;
+      width: 30px;
+      background-color: $primaryColor;
+    }
   }
   .line2 {
-    @include burger-line;
+    &__closed {
+      @include burger-line;
+      animation-delay: calc($animation-duration * 3 / 5);
+    }
+    &__open {
+      @include burger-line;
+      animation: none;
+      transform: rotate(45deg);
+      /* transform: translate(0, 8px) */
+      position: relative;
+      top: 0;
+      width: 30px;
+      background-color: $primaryColor;
+    }
   }
   .line3 {
-    @include burger-line;
+    &__closed {
+      @include burger-line;
+      animation-delay: calc($animation-duration * 2 / 5);
+    }
+    &__open {
+      @include burger-line;
+      /* animation: none; */
+      display: none;
+    }
+  }
+  .line4 {
+    &__closed {
+      @include burger-line;
+      animation-delay: calc($animation-duration * 1 / 5);
+    }
+    &__open {
+      @include burger-line;
+      /* animation: none; */
+      display: none;
+    }
+  }
+  .line5 {
+    &__closed {
+      @include burger-line;
+      animation-delay: 0s;
+    }
+    &__open {
+      @include burger-line;
+      /* animation: none; */
+      display: none;
+    }
+  }
+}
+
+@keyframes burger-line {
+  0% {
+    background-color: $grey;
+  }
+  15% {
+    background-color: $grey;
+  }
+  40% {
+    background-color: $primaryColor;
+  }
+  65% {
+    background-color: $primaryColor;
+  }
+  100% {
+    background-color: $grey;
   }
 }
