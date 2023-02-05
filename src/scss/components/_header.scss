@@ -3,23 +3,48 @@
 header {
   display: flex;
   justify-content: space-between;
-  align-items: center;
+  align-items: start;
   padding: 2vh 5vw;
   background-color: $white;
-  a {
+
+  /* a {
     margin: 0 1vw;
+    background-color: purple;
+    padding: 0;
     font-weight: 400;
-  }
+  } */
 }
 
 .header {
-  &__title {
+  &__main {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     margin: 0;
+    padding: 0;
+  }
+  &__logo {
+    padding: 0;
+    margin: 0;
+    a {
+      padding: 0;
+    }
+  }
+  &__icon {
+    height: 30px;
+    margin: 0;
+    padding: 0;
+  }
+  &__title {
     font-family: $logoFont;
+    padding: 0;
+    margin: 0 1vw;
   }
 
-  &-nav__link {
-    @extend a;
+  &__subtitle {
+    font-size: 1rem;
+    padding: 0.5em 0;
+    letter-spacing: 0.15em;
   }
 
   &__nav {

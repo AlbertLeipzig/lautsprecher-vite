@@ -25,7 +25,7 @@ export const Events = () => {
       .catch((e) => {
         setLoadingEvents(false);
         setError(
-          `Es tut uns leid, derzeit ist keine Veranstaltung vorhanden. Kommt bitte auf eine späteren Zeitpunkt zurück. Wir freuen uns auf Dich!`
+          `Es tut uns leid, derzeit sind keine Veranstaltung vorhanden. Kommt bitte auf eine späteren Zeitpunkt zurück. Wir freuen uns auf Dich!`
         );
         console.error(e);
       });
@@ -58,8 +58,8 @@ export const Events = () => {
     <div className="events">
       {title && <h1>{title}</h1>}
       {events && (
-        <div className="event__filter">
-          <label htmlFor="event__filter">
+        <div className='event__filter-container'>
+          <label className="event__filter">
             <input
               type="text"
               placeholder="event..."
@@ -68,7 +68,7 @@ export const Events = () => {
               }}
             />
           </label>
-          <label htmlFor="">
+          <label htmlFor="" className="event__filter">
             <input
               type="date"
               onChange={(e) =>

@@ -6,17 +6,11 @@ export const Footer = () => {
     <footer>
       <menu>
         <Link to="/faq"> FAQ </Link>
-
-        <nav>
-          <Link to="/events"> Veranstaltungen </Link>
-          <Link to="/about"> About </Link>
-          <Link to="/contact"> Kontakt </Link>
-        </nav>
+        <Link to="/events"> Veranstaltungen </Link>
+        <Link to="/about"> About </Link>
       </menu>
       <div className="footer__contact">
-        <a href="mailto:mail@mail.com">
-          <BsMailbox />
-        </a>
+        <Link to="/contact"> Kontakt </Link>
         <a href="https://instagram.com/lautsprecher_leipzig" target={'_blank'}>
           <BsInstagram />
         </a>
