@@ -1,4 +1,6 @@
+import { useState } from 'react';
 import { DataProvider } from './context/DataContext';
+import { TitleContext } from './context/TitleContext';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { About } from './views/About.jsx';
 import { Contact } from './views/Contact.jsx';
@@ -16,23 +18,26 @@ import './scss/main.scss';
 // delete after learning
 
 function App() {
+  const [title, setTitle] = useState('Lautsprecher');
   return (
     <BrowserRouter>
       <div className="App">
         <Header />
         <main>
           <DataProvider>
-            <Routes>
-              <Route exact path="/" element={<LandingPage />} />
-              <Route path="/events" element={<Events />} />
-              <Route path="/about" element={<About />} />
-              <Route path="/contact" element={<Contact />} />
-              <Route path="/impressum" element={<Impressum />} />
-              <Route path="/projects" element={<Projects />} />
-              <Route path="/collaborate" element={<Collaborate />} />
-              <Route path="/faq" element={<Faq />} />
-              <Route path="*" element={<NotFound />} />
-            </Routes>
+            <TitleContext.Provider value={{title, setTitle}}>
+              <Routes>
+                <Route exact path="/" element={<LandingPage />} />
+                <Route path="/events" element={<Events />} />
+                <Route path="/about" element={<About />} />
+                <Route path="/contact" element={<Contact />} />
+                <Route path="/impressum" element={<Impressum />} />
+                <Route path="/projects" element={<Projects />} />
+                <Route path="/collaborate" element={<Collaborate />} />
+                <Route path="/faq" element={<Faq />} />
+                <Route path="*" element={<NotFound />} />
+              </Routes>
+            </TitleContext.Provider>
           </DataProvider>
         </main>
         <Footer />

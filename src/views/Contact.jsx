@@ -1,8 +1,11 @@
-import { Link } from 'react-router-dom';
+import { useContext } from 'react';
+import { TitleContext } from '../context/TitleContext.jsx';
 export const Contact = () => {
+  const { title, setTitle } = useContext(TitleContext);
+  setTitle('Kontakt');
   return (
     <div className="contact">
-      <h1>Contact</h1>
+      <h1>{title}</h1>
       <form action="">
         <label htmlFor="name">
           Vorname *
