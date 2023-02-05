@@ -10,6 +10,7 @@ import { Header } from './components/Header.jsx';
 import { Footer } from './components/Footer.jsx';
 import { Projects } from './views/Projects.jsx';
 import { NotFound } from './views/NotFound';
+import { Faq } from './views/Faq.jsx';
 import './scss/main.scss';
 
 // delete after learning
@@ -29,6 +30,7 @@ function App() {
               <Route path="/impressum" element={<Impressum />} />
               <Route path="/projects" element={<Projects />} />
               <Route path="/collaborate" element={<Collaborate />} />
+              <Route path="/faq" element={<Faq />} />
               <Route path="*" element={<NotFound />} />
             </Routes>
           </DataProvider>
