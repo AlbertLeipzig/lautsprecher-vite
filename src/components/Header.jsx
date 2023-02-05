@@ -1,14 +1,18 @@
 import { Link } from 'react-router-dom';
+import logo from '../../public/favicon.jpg';
 import { useContext } from 'react';
 export const Header = () => {
   return (
     <header>
-      <>
+      <div className="header__logo">
         <Link to="/">
-          <h2 className="header__title">Lautsprecher</h2>
-          <p>Musik Magazine der Stadt Leipzig</p>
+          <div className="header__main">
+            <img src={logo} alt="" className="header__icon" />
+            <h2 className="header__title">Lautsprecher</h2>
+          </div>
+          <p className="header__subtitle">Musik Magazine der Stadt Leipzig</p>
         </Link>
-      </>
+      </div>
       <div className="burger-menu">
         <div className="line1"></div>
         <div className="line2"></div>

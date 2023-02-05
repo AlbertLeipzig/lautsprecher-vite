@@ -1,0 +1,23 @@
+@mixin burger-line {
+  width: 30px;
+  height: 3px;
+  background-color: #4c4c4c;
+  border-radius: 5px;
+}
+.burger-menu {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+
+  .line1 {
+    @include burger-line;
+  }
+  .line2 {
+    @include burger-line;
+  }
+  .line3 {
+    @include burger-line;
+  }
+}
