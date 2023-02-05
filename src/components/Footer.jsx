@@ -1,21 +1,28 @@
-import { BsInstagram } from 'react-icons/bs';
+import { Link } from 'react-router-dom';
+import { BsInstagram, BsMailbox } from 'react-icons/bs';
 import { GrUserAdmin } from 'react-icons/gr';
 export const Footer = () => {
   return (
     <footer>
-      <div className="footer__by">
-        <p>Created by </p>
-        <a href="https://twitter.com/albert__loewe" target={'_blank'}>
-          @albertLeipzig
+      <menu>
+        <Link to="/faq"> FAQ </Link>
+
+        <nav>
+          <Link to="/events"> Veranstaltungen </Link>
+          <Link to="/about"> About </Link>
+          <Link to="/contact"> Kontakt </Link>
+        </nav>
+      </menu>
+      <div className="footer__contact">
+        <a href="mailto:mail@mail.com">
+          <BsMailbox />
         </a>
-      </div>
-      <div className="social-container">
-        <a href="https://instagram.com" target={'_blank'}>
+        <a href="https://instagram.com/lautsprecher_leipzig" target={'_blank'}>
           <BsInstagram />
         </a>
-        <button>
-
-        </button>
+        <a href="https://github.com/AlbertLeipzig" target={'_blank'}>
+          by @albertLeipzig
+        </a>
       </div>
     </footer>
   );
