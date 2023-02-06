@@ -1,23 +1,36 @@
 @use '../components/_list.scss' as *;
 @use '../utilities/_boxes.scss' as *;
 
-$gradientPercent : 50%;
+$gradientPercent: 100px;
 
-menu {
-  display: flex;
-  margin: 4vh 0;
-  flex-direction: column;
-  gap: 1em;
-  li {
-    margin: 0;
-    a {
-      padding: 0;
-    }
-  }
-}
 .landing-page {
   h1 {
     font-size: 3.2rem;
+    padding: 1em;
+  }
+  menu {
+    display: flex;
+    margin: 4vh 0;
+    flex-direction: column;
+    gap: 1em;
+    li {
+      margin: 0;
+      a {
+        padding: 0;
+      }
+    }
+    @media screen and (min-width: 481px) {
+      max-width: 66vw;
+      margin: 2vh auto;
+    }
+    @media screen and (min-width: 769px) {
+      max-width: 50vw;
+      margin: 2vh auto;
+    }
+    @media screen and (min-width: 1025px) {
+      max-width: 33vw;
+      margin: 2vh auto;
+    }
   }
   &__hero {
     background-image: url('https://images.unsplash.com/photo-1511379938547-c1f69419868d?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NHx8bXVzaWN8ZW58MHx8MHx8&auto=format&fit=crop&w=500&q=60');
@@ -25,18 +38,21 @@ menu {
   }
   &__container1 {
     @include list;
-    padding: 3em 0;
+    padding: 3em 2vw;
     background-image: linear-gradient(
         to right,
         #ffffff $gradientPercent,
+
         hsl(0, 0%, 90%, 0)
       ),
       url('https://images.unsplash.com/photo-1661956602926-db6b25f75947?ixlib=rb-4.0.3&ixid=MnwxMjA3fDF8MHxlZGl0b3JpYWwtZmVlZHwxfHx8ZW58MHx8fHw%3D&auto=format&fit=crop&w=500&q=60');
+
     background-size: cover;
   }
+
   &__container2 {
     @include list;
-    padding: 3em 0;
+    padding: 3em 2vw;
 
     background-image: linear-gradient(
         to right,
@@ -48,7 +64,8 @@ menu {
   }
   &__container3 {
     @include list;
-    padding: 3em 0;
+    padding: 3em 2vw;
+
     background-image: linear-gradient(
         to right,
         #ffffff $gradientPercent,
@@ -59,7 +76,7 @@ menu {
   }
   &__container4 {
     @include list;
-    padding: 3em 0;
+    padding: 3em 2vw;
 
     background-image: linear-gradient(
         to right,

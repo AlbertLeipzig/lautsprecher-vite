@@ -6,13 +6,24 @@
     color: $grey;
   }
 
+  .about__mission {
+    margin: 0 auto;
+  }
+
   p {
     text-align: center;
     font-style: italic;
     font-size: 2rem;
   }
-  li {
-    margin: 1em 0;
+  section li {
+    margin: 1em auto;
+    display: flex;
+    p {
+      text-align: start;
+    }
+    @media screen and (min-width: 1025px) {
+      display: flex;
+    }
     /* &::before {
       content: '•';
       color: $primaryColor;

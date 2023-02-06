@@ -20,6 +20,9 @@ textarea {
   margin: 10px 0;
   padding: 0 10px;
   border: 1px solid $primaryColor;
+  @media screen and (min-width: 769px) {
+    width: 50vw;
+  }
 }
 textarea {
   height: 160px;
@@ -50,7 +53,7 @@ textarea {
 
   p {
     text-align: center;
-    margin: 5vh 0;
+    margin: 5vh auto;
     color: $primaryColor;
   }
 }
