@@ -1,14 +1,15 @@
-@use '../utilities/utilities' as *;
-@use '../utilities/colors' as *;
-@use '../utilities/boxes' as *;
+@use '../utilities/_utilities' as *;
+@use '../utilities/_colors' as *;
+@use '../utilities/_boxes' as *;
 
 footer {
   display: flex;
   justify-content: space-between;
   align-items: start;
-  padding: $boxPadding;
+  padding: $bigBoxPadding;
   position: sticky;
   bottom: -20vh;
+  border-top: 1px solid $primaryColor;
   @media screen and (min-width: 481px) {
     padding: 0 5vw;
   }
