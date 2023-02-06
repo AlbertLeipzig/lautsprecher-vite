@@ -1,5 +1,7 @@
-@use '../components/list.scss' as *;
-@use '../components/boxes.scss' as *;
+@use '../components/_list.scss' as *;
+@use '../utilities/_boxes.scss' as *;
+
+$gradientPercent : 50%;
 
 menu {
   display: flex;
