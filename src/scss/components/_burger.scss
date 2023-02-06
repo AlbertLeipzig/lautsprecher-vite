@@ -1,6 +1,7 @@
 @use '../utilities/colors.scss' as *;
 @use '../utilities/boxes.scss' as *;
 $animation-duration: 6s;
+
 @mixin burger-line {
   width: 40px;
   height: 3px;
@@ -9,10 +10,12 @@ $animation-duration: 6s;
   animation: burger-line $animation-duration infinite;
 }
 .burger-menu {
+  grid-area: burger;
   display: flex;
+  margin-right: 5vw;
   flex-direction: column;
   justify-content: center;
-  align-items: center;
+  align-items: end;
   gap: 5px;
   position: relative;
   left: 20px;
@@ -94,6 +97,9 @@ $animation-duration: 6s;
       /* animation: none; */
       display: none;
     }
+  }
+  @media screen and (min-width: 769px) {
+    display: none;
   }
 }
 
