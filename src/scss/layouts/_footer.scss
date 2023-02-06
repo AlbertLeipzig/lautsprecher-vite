@@ -1,6 +1,6 @@
 @use '../utilities/utilities' as *;
 @use '../utilities/colors' as *;
-@use "../utilities/boxes" as *;
+@use '../utilities/boxes' as *;
 
 footer {
   display: flex;
@@ -9,6 +9,9 @@ footer {
   padding: $boxPadding;
   position: sticky;
   bottom: -20vh;
+  @media screen and (min-width: 481px) {
+    padding: 0 5vw;
+  }
 
   menu {
     display: flex;
