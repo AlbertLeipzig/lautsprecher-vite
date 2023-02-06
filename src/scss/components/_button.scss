@@ -1,9 +1,9 @@
 @use '../utilities/colors' as *;
-
+@use '../utilities/boxes' as *;
 button {
   background-color: $white;
   border: none;
-  padding: 0.5em 1.5em;
+  padding: $boxPadding;
   margin-top: 2.5vh;
-  border-radius: 5px;
+  border-radius: $borderRadius;
 }

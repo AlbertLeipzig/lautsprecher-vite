@@ -1,10 +1,11 @@
+@use '../utilities/boxes' as *;
 .event-card {
   display: flex;
-  margin: 1.5vh auto;
+  margin: $boxMargin;
   gap: 5vw;
-  padding: 30px 10px;
-  border: 2px solid tomato;
-  border-radius: 5px;
+  padding: $boxPadding;
+  border: $border;
+  border-radius: $borderRadius;
   &__main {
     width: 33%;
     display: flex;

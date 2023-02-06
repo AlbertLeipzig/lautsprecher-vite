@@ -1,10 +1,11 @@
 @use '../utilities/colors.scss' as *;
+@use '../utilities/boxes.scss' as *;
 $animation-duration: 6s;
 @mixin burger-line {
   width: 40px;
   height: 3px;
   background-color: $grey;
-  border-radius: 5px;
+  border-radius: $borderRadius;
   animation: burger-line $animation-duration infinite;
 }
 .burger-menu {
