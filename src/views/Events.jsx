@@ -54,6 +54,8 @@ export const Events = () => {
     }
   }, [filter, events]);
 
+  console.log(events)
+
   return (
     <div className="events">
       {title && <h1>{title}</h1>}
@@ -78,7 +80,7 @@ export const Events = () => {
           </label>
         </div>
       )}
-      {loadingEvents !== false && (
+      {!events && loadingEvents !== false && (
         <p className="events__loading">Die Events sind gleich da ...</p>
       )}
       {error && (
