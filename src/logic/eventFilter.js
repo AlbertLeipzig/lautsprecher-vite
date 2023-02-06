@@ -22,13 +22,27 @@ import { convertDateStringFromInput } from './formatDate';
 
 export const eventFilter = (events, filter) => {
   let filteredEvents = [];
-  //console.log(filter);
 
-  const tagEvents = filteredByTag(events, filter) || events;
-  console.log(events);
+  if (filter.date === '' && filter.tag === '') {
+    filteredEvents = events;
+  } else if (filter.date === '' && filter.tag !== '') {
+    filteredEvents =  filteredByTag(events, filter);
+  } else if (filter.date !== '' && filter.tag === '') {
+    filteredEvents =  filteredByDate(events, filter);
+  } else if (filter.date !== '' && filter.tag !== '') {
+    filteredEvents =  filteredByDate(filteredByTag(events, filter), filter);
+  } else {
+    filteredEvents =  events;
+  }
+
+  /* const tagEvents = filteredByTag(events, filter) || events; */
+  //console.log('filtered by tag events : ', tagEvents);
   //console.log('TAG EVENTS : ', tagEvents);
-  const dateEvents = filteredByDate(tagEvents, filter) || tagEvents;
+
+  /* const dateEvents =
+    filter.date !== '' ? filteredByDate(tagEvents, filter) : tagEvents;
+  console.log('filtered by date events : ', dateEvents);
   //console.log('DATE EVENTS : ', dateEvents);
-  filteredEvents = dateEvents;
+  filteredEvents = dateEvents; */
   return filteredEvents;
 };
