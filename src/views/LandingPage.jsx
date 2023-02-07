@@ -4,19 +4,81 @@ import { DataContext } from '../context/DataContext';
 import axios from 'axios';
 
 export const LandingPage = () => {
-  const { setEvents } = useContext(DataContext);
+  const {
+    setEvents,
+    musicians,
+    setMusicians,
+    bands,
+    setBands,
+    venues,
+    setVenues,
+    organizers,
+    setOrganizers,
+  } = useContext(DataContext);
+
+  const getEvents = async () => {
+    try {
+      const res = await axios.get('http://localhost:5000/api/v1/events');
+      const data = res.data;
+      setEvents(data);
+    } catch (e) {
+      console.error(e);
+    }
+  };
+
+  const getMusicians = async () => {
+    try {
+      const res = await axios.get('http://localhost:5000/api/v1/musicians');
+      const data = res.data;
+      setMusicians(data);
+    } catch (e) {
+      console.error(e);
+    }
+  };
+
+  const getBands = async () => {
+    try {
+      const res = await axios.get('http://localhost:5000/api/v1/bands');
+      const data = res.data;
+      setBands(data);
+    } catch (e) {
+      console.error(e);
+    }
+  };
+
+  const getOrganizers = async () => {
+    try {
+      const res = await axios.get('http://localhost:5000/api/v1/organizers');
+      const data = res.data;
+      setOrganizers(data);
+    } catch (e) {
+      console.error(e);
+    }
+  };
+
+  const getVenues = async () => {
+    try {
+      const res = await axios.get('http://localhost:5000/api/v1/venues');
+      const data = res.data;
+      setVenues(data);
+    } catch (e) {
+      console.error(e);
+    }
+  };
 
   useEffect(() => {
-    axios
-      .get('http://localhost:5000/api/v1/events')
-      .then((res) => {
-        const data = res.data;
-        setEvents(data);
-      })
-      .catch((e) => {
-        console.error(e);
-      });
+    getEvents();
+    getVenues();
+    getMusicians();
+    getBands();
+    getOrganizers();
   }, []);
+
+  /*   console.log(musicians);
+  console.log(venues);
+  console.log(bands);
+  console.log(organizers); */
+
   return (
     <div className="landing-page">
       <div className="landing-page__hero">
@@ -25,9 +87,7 @@ export const LandingPage = () => {
       <menu>
         <li>
           <Link to="/events">
-            <div className="landing-page__container1">
-              Veranstaltungskalender
-            </div>
+            <div className="landing-page__container1">Veranstaltungen</div>
           </Link>
         </li>
         <li>

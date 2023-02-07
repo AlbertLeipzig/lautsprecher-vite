@@ -2,6 +2,8 @@ import { useEffect, useState, useContext } from 'react';
 import { DataContext } from '../context/DataContext.jsx';
 import { TitleContext } from '../context/TitleContext.jsx';
 import { eventFilter } from '../logic/eventFilter';
+import { EventsPagination } from '../components/EventsPagination.jsx';
+import { EventCard } from '../components/EventCard.jsx';
 import axios from 'axios';
 export const Events = () => {
   const [filter, setFilter] = useState({ date: '', tag: '' });
@@ -10,6 +12,7 @@ export const Events = () => {
   const { events, setEvents } = useContext(DataContext);
   const { title, setTitle } = useContext(TitleContext);
   const [filteredEvents, setFilteredEvents] = useState(events);
+  const [displayedEvents, setDisplayedEvents] = useState([]);
 
   setTitle('Veranstaltungen');
 
@@ -37,6 +40,14 @@ export const Events = () => {
 
   /* filter events */
 
+  /* displayed events */
+
+  useEffect(() => {
+    displayedEvents.length <= 25
+      ? setDisplayedEvents(filteredEvents)
+      : setDisplayedEvents(filteredEvents.slice(0, 25));
+  }, [filteredEvents]);
+
   useEffect(() => {
     // no filter is defined
     if (filter.date === '' && filter.tag === '') {
@@ -44,7 +55,6 @@ export const Events = () => {
       // date is defined
     } else if (filter.date !== '' && filter.tag === '') {
       setFilteredEvents(eventFilter(events, filter.date));
-      console.log('date is defined');
       // tag is defined
     } else if (filter.date === '' && filter.tag !== '') {
       setFilteredEvents(eventFilter(events, filter.tag));
@@ -54,13 +64,11 @@ export const Events = () => {
     }
   }, [filter, events]);
 
-  console.log(events)
-
   return (
     <div className="events">
       {title && <h1>{title}</h1>}
       {events && (
-        <div className='event__filter-container'>
+        <div className="event__filter-container">
           <label className="event__filter">
             <input
               type="text"
@@ -93,8 +101,15 @@ export const Events = () => {
         </div>
       )}
       <div className="events-container">
-        {filteredEvents &&
-          Object.values(filteredEvents).map((event) => <p>{event.name}</p>)}
+        {displayedEvents &&
+          Object.values(displayedEvents).map((event) => (
+            <EventCard props={event} />
+          ))}
+      </div>
+      <div className="events__pagination">
+        {filteredEvents.length > 25 && (
+          <EventsPagination props={filteredEvents} />
+        )}
       </div>
     </div>
   );

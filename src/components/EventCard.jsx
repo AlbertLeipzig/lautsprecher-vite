@@ -1,77 +1,154 @@
-import { useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
+import { DataContext } from '../context/DataContext.jsx';
+import { BiEuro } from 'react-icons/bi';
+import {
+  pairOrganizer,
+  pairVenue,
+  titleFormat,
+  subtitleFormat,
+  imageFormat,
+  dateFormat,
+  formatMusicianArray,
+  formatBandArray,
+  formatPricesArray,
+} from '../logic/formatFunctions/formatFunctions.js';
 
-const placeholderImageArray = [
-  'https://images.unsplash.com/photo-1445375011782-2384686778a0?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MzZ8fG11c2ljfGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=500&q=60',
-  'https://images.unsplash.com/photo-1507838153414-b4b713384a76?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8M3x8bXVzaWN8ZW58MHx8MHx8&auto=format&fit=crop&w=500&q=60',
-  'https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8OHx8bXVzaWN8ZW58MHx8MHx8&auto=format&fit=crop&w=500&q=60',
-  'https://images.unsplash.com/photo-1507676184212-d03ab07a01bf?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MjR8fGNvbmNlcnR8ZW58MHx8MHx8&auto=format&fit=crop&w=500&q=60',
-];
+export const EventCard = ({ props }) => {
+  const rawEvent = props;
 
-export const EventCard = ({ event }) => {
   const [image, setImage] = useState(null);
+  const [event, setEvent] = useState({
+    image: undefined,
+    name: undefined,
+    title: undefined,
+    subtitle: undefined,
+    date: undefined,
+    venue: undefined,
+    organizer: undefined,
+    price: undefined,
+    description: undefined,
+    musicians: [],
+    bands: [],
+  });
 
-  // function to capitalize the first letter of a string
-  const capitalizeFirstLetter = (string) => {
-    return string.charAt(0).toUpperCase() + string.slice(1);
-  };
+  const { musicians, bands, venues, organizers } = useContext(DataContext);
 
-  // function to make every word in the title start with a capital letter
+  /* console.log(imageFormat(event)); */
 
-  /*   const formattedTitle = (title) => {
-    const titleArray = title.split(' ');
-    const formattedTitleArray = titleArray.map((word) => {
-      return capitalizeFirstLetter(word);
-    });
-    return formattedTitleArray.join(' ');
-  };
+  // FORMAT EVENT DATA
 
-  event.title && (event.title = formattedTitle(event.title)); */
+  /* 
+    price: listPrices(rawEvent.price),
+    description: formatDescription(rawEvent.description) || undefined,
+    musicians: listMusicians(rawEvent.musicians) || undefined,
+    bands: listBands(rawEvent.bands) || undefined,
+
+    NOT NECESSARY
+    organizer: pairOrganizer(rawEvent.organizer),
+
+ */
+  // find id in the dB and substitute for readable values
+
+  /* console.log('venues : ', venues); */
 
   useEffect(() => {
-    if (event.img || event.image) {
-      setImage(event.img || event.image);
-    } else {
-      setImage(
-        placeholderImageArray[
-          Math.floor(Math.random() * placeholderImageArray.length)
-        ]
-      );
-    }
-  }, [event.img]);
+    rawEvent && setEvent(formattedEvent);
+  }, [rawEvent]);
+
+  const formattedEvent = {
+    image: imageFormat(rawEvent),
+    name:
+      (rawEvent.name && titleFormat(rawEvent.name)) ||
+      titleFormat('placeholder filter name'),
+    title:
+      (rawEvent.title && titleFormat(rawEvent.title)) ||
+      titleFormat('placeholder filter title'),
+    subtitle:
+      (rawEvent.subtitle && subtitleFormat(rawEvent.subtitle)) ||
+      subtitleFormat('placeholder filter subtitle'),
+    date:
+      (rawEvent.date && dateFormat(rawEvent.date)) ||
+      dateFormat(['10.10.2023']),
+    venue: pairVenue(event, venues) || pairVenue('placeholder venue', venues),
+    musicians: formatMusicianArray(rawEvent.musicians, musicians) || [
+      { firstName: 'placeholder musicians' },
+    ],
+    bands: formatBandArray(rawEvent.bands, bands) || [
+      { name: 'placeholder bands' },
+    ],
+    price:
+      { normalPreis: 15, vorverkauf: 10, abendkasse: 15, ermaessigt: 5 } ||
+      rawEvent.prices,
+    link: rawEvent.link || 'placeholder link',
+    organizer: pairOrganizer(rawEvent, organizers) || 'placeholder organizer',
+    tags: rawEvent.tags,
+  };
+
+  useEffect(() => {
+    setImage(imageFormat(event));
+  }, [rawEvent]);
+
+  //console.log('rawEvent : ', rawEvent);
 
   return (
     <div className="event-card">
-      <div className="event-card__main">
-        {image && <img src={image} alt={'event image'} />}
-        {event.title && <h3>{`TITLE : ${event?.title}`}</h3>}
-        {event.name && <h3>{` NAME : ${event?.name}`}</h3>}
-        {event.subtitle && (
-          <p className="event-subtitle">{`SUBTITLE : ${
-            event?.subtitle || 'HI THERE'
-          }`}</p>
-        )}
-        <p className="event-subtitle">{`SUBTITLE : ${
-          event?.subtitle || 'HI THERE'
-        }`}</p>
-      </div>
-      <div className="event-card__content">
-        <div>
-          {event.date && <p>{`DATE : ${Object.toString(event?.date)}`}</p>}
-          {event.venue && <p>{`VENUE : ${event?.venue}`}</p>}
-        </div>
-        {event.musicians &&
-          event.musicians.map((musician) => <p>MUSICIAN : {musician}</p>)}
-        {event.bands && event.bands.map((band) => <p>BAND : {band}</p>)}
-        {/* {event.description && <p>{event?.description.slice(0, 100)}</p>} */}
-        {event.price && <p>{`PRICE : ${event?.price.$numberDecimal} E`}</p>}
-        {event.link.length > 0 && (
-          <a href={event.link} target={'_blank'}>
-            + INFO
-          </a>
-        )}
-        {event.organizer && <p>{`ORGANIZER : ${event?.organizer}`}</p>}
-        {event.tags && event.tags.map((tag) => <p className="tag">{tag}</p>)}
-      </div>
+      {event && (
+        <>
+          <div className="event-card__main">
+            <img src={event.image} alt={'event image'} />
+            {formattedEvent.title && (
+              <h3>{`TITLE : ${formattedEvent?.title}`}</h3>
+            )}
+            {formattedEvent.name && <h3>{`NAME : ${formattedEvent?.name}`}</h3>}
+            {formattedEvent.subtitle && (
+              <p className="event-subtitle">{`SUBTITLE : ${formattedEvent?.subtitle}`}</p>
+            )}
+          </div>
+          <div className="event-card__content">
+            <p>{`VENUE : ${formattedEvent?.venue.name}`}</p>
+            <div>
+              <p>DATE : </p>
+              {formattedEvent?.date.map((date) => (
+                <p>{date}</p>
+              ))}
+            </div>
+
+            <div>
+              <p>MUSICIANS : </p>
+              {formattedEvent.musicians &&
+                formattedEvent.musicians.map((musician) => (
+                  <p>{musician?.firstName}</p>
+                ))}
+            </div>
+            <div>
+              <p>BANDS : </p>
+              {formattedEvent?.bands.map((band) => (
+                <p>{band?.name}</p>
+              ))}
+            </div>
+            {formattedEvent.price && (
+              <div className="event-card__prices">
+                <p> PRICE: </p>
+                <p>{formattedEvent.price.normalPreis}</p>
+                <p>vvk {formattedEvent.price.vorverkauf}</p>
+                <p>Ak {formattedEvent.price.abendkasse}</p>
+                <p>Er {formattedEvent.price.ermaessigt}</p>
+                <BiEuro />
+              </div>
+            )}
+
+            <a href={formattedEvent?.link} target={'_blank'}>
+              + INFO
+            </a>
+            {/* {formattedEvent.organizer && (
+              <p>{`ORGANIZER : ${formattedEvent?.organizer.name}`}</p>
+            )} */}
+            {formattedEvent?.tags.map((tag) => (
+              <p className="tag">{tag}</p>
+            ))}
+          </div>
+        </>
+      )}
     </div>
   );
 };
