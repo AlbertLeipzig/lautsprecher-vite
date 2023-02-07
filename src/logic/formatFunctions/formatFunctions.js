@@ -7,6 +7,7 @@ import { dateFormat } from './dateFormat.js';
 import { formatMusicianArray } from './formatMusicianArray.js';
 import { formatBandArray } from './formatBandArray.js';
 import { formatPricesArray } from './formatPricesArray.js';
+import { formatDescription } from './formatDescription.js';
 export {
   pairOrganizer,
   pairVenue,
@@ -17,4 +18,5 @@ export {
   formatMusicianArray,
   formatBandArray,
   formatPricesArray,
+  formatDescription,
 };
