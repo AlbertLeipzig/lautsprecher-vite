@@ -64,6 +64,8 @@ export const Events = () => {
     }
   }, [filter, events]);
 
+const firstEvent = events[0];
+
   return (
     <div className="events">
       {title && <h1>{title}</h1>}

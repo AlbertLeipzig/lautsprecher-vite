@@ -1,7 +1,7 @@
 export const formatMusicianArray = (eventMusicians, dbMusicians) => {
   let musicianArray = [];
   if (eventMusicians === []) {
-    return [{ firstName: eventMusicians }];
+    return null;
   }
 
   eventMusicians.forEach((eventMusician) => {
@@ -16,7 +16,8 @@ export const formatMusicianArray = (eventMusicians, dbMusicians) => {
 
   // only till we have a db
 
-  musicianArray.length <= 0 && musicianArray.push({ firstName: 'eventuell placeholder' });
+  musicianArray.length <= 0 &&
+    musicianArray.push({ firstName: 'eventuell placeholder' });
 
   return musicianArray;
 };

@@ -1,16 +1,28 @@
 export const formatBandArray = (eventBands, dbBands) => {
   let bandArray = [];
 
+  if (eventBands === []) {
+    return null;
+  }
+
+  /* console.log('eventBands : ', eventBands);
+  console.log('dbBands : ', dbBands); */
+
+  /* eventBands.forEach((band) => {
+    band._id === dbBands._id && bandArray.push(band);
+  }); */
+
   eventBands.forEach((eventBand) => {
-    const band = dbBands.find((band) => {
-      console.log('event Band : ', eventBand);
-      // console.log('band id : ', band._id);
+    // find the band in the db that matches the band in the event
+    const matchedBand = dbBands.find((band) => {
+      // console.log('band', band);
+      // console.log('eventBand', eventBand);
       return band._id === eventBand && band;
     });
-    console.log(band);
-    bandArray.push(band);
+    matchedBand && bandArray.push(matchedBand);
   });
 
-  bandArray.length <= 0 && bandArray.push({ name: 'eventuell placeholder' });
+  /*   console.log('BAND ARRAY : ', bandArray); */
+
   return bandArray;
 };

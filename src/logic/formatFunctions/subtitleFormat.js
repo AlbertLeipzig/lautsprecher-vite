@@ -1,3 +1,6 @@
 export const subtitleFormat = (string) => {
-  return string.charAt(0).toUpperCase() + string.slice(1);
+  const capitalizedString = string.charAt(0).toUpperCase() + string.slice(1);
+  return capitalizedString.length >= 30
+    ? capitalizedString.slice(0, 30).concat('...')
+    : capitalizedString;
 };

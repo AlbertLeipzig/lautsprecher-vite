@@ -1,10 +1,10 @@
 export const pairVenue = (rawEvent, venues) => {
   const eventVenue = venues.find((venue) => {
-    venue._id === rawEvent.venue
-      ? venue.name
-      : 'formatted venue';
+    return venue._id === rawEvent.venue && venue;
   });
 
-  const filteredVenue = eventVenue || { name: 'formatted venue' };
-  return filteredVenue;
+  // console.log('venues : ', venues);
+  // console.log('Raw Event Venue', rawEvent.venue);
+  // console.log('eventVenue : ', eventVenue);
+  return eventVenue;
 };
