@@ -1,6 +1,7 @@
 import { useContext, useEffect, useState } from 'react';
 import { DataContext } from '../context/DataContext.jsx';
 import { BiEuro } from 'react-icons/bi';
+import axios from 'axios';
 import {
   pairOrganizer,
   pairVenue,
@@ -30,6 +31,28 @@ export const EventCard = ({ props }) => {
     musicians: [],
     bands: [],
   });
+
+  // edit an event using axios
+  const editEvent = async () => {
+    const response = await axios.put(
+      `http://localhost:3001/events/${rawEvent.id}`,
+      {
+        bands: rawEvent.bands,
+        date: rawEvent.date,
+        description: rawEvent.description,
+        image: rawEvent.image,
+        link: rawEvent.link,
+        musicians: rawEvent.musicians,
+        prices: rawEvent.prices,
+        organizer: rawEvent.organizer,
+        subtitle: rawEvent.subtitle,
+        tags: rawEvent.tags,
+        title: rawEvent.title,
+        venue: rawEvent.venue,
+      }
+    );
+    console.log(response);
+  };
 
   useEffect(() => {
     rawEvent && setEvent(formattedEvent);
@@ -79,7 +102,8 @@ export const EventCard = ({ props }) => {
           {formattedEvent.musicians &&
             formattedEvent.musicians.map((musician) => (
               <li>
-                {musician?.firstName}, {musician?.lastName}
+                <p>{musician?.firstName},</p>
+                <p>{musician?.lastName}</p>
               </li>
             ))}
         </ul>
@@ -91,9 +115,9 @@ export const EventCard = ({ props }) => {
       </div>
       {formattedEvent.price && (
         <div className="event-card__prices">
-          <p>{formattedEvent.price.normalPreis}</p>
-          <p>vvk {formattedEvent.price.vorverkauf}</p>
-          <p>Ak {formattedEvent.price.abendkasse}</p>
+          <p>{formattedEvent.price.normalPreis} /</p>
+          <p>vvk {formattedEvent.price.vorverkauf} / </p>
+          <p>Ak {formattedEvent.price.abendkasse} / </p>
           <p>Er {formattedEvent.price.ermaessigt}</p>
           <BiEuro />
         </div>
@@ -106,12 +130,6 @@ export const EventCard = ({ props }) => {
       >
         + INFO
       </a>
-      {/* {formattedEvent?.description && (
-        <p className="event-description">{formattedEvent.description}</p>
-      )}
-      {formattedEvent?.tags.map((tag) => (
-        <p className="tag">{tag}</p>
-      ))} */}
     </div>
   );
 };
