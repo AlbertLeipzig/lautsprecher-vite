@@ -1,8 +1,11 @@
 export const formatPricesArray = (prices) => {
   let pricesArray = [];
-  console.log(prices)
- /*  prices.forEach((price) => {
+  if (!prices) {
+    return pricesArray;
+  }
+  prices.forEach((price) => {
     pricesArray.push(price);
-  }); */
-  return pricesArray;
+  });
+  const pricesString = pricesArray.toString();
+  return pricesString;
 };

@@ -12,6 +12,8 @@ import {
   formatMusicianArray,
   formatBandArray,
   formatDescription,
+  formatPricesArray,
+  linkFormat,
 } from '../logic/formatFunctions/formatFunctions.js';
 
 export const EventCard = ({ props }) => {
@@ -33,7 +35,7 @@ export const EventCard = ({ props }) => {
   });
 
   // edit an event using axios
-  const editEvent = async () => {
+  /*   const editEvent = async () => {
     const response = await axios.put(
       `http://localhost:3001/events/${rawEvent.id}`,
       {
@@ -51,8 +53,7 @@ export const EventCard = ({ props }) => {
         venue: rawEvent.venue,
       }
     );
-    console.log(response);
-  };
+  }; */
 
   useEffect(() => {
     rawEvent && setEvent(formattedEvent);
@@ -65,11 +66,9 @@ export const EventCard = ({ props }) => {
       dateFormat(['10.10.2023']),
     description: formatDescription(rawEvent.description),
     image: imageFormat(rawEvent),
-    link: rawEvent.link,
+    link: linkFormat(rawEvent.link, rawEvent, venues),
     musicians: formatMusicianArray(rawEvent.musicians, musicians),
-    price:
-      { normalPreis: 15, vorverkauf: 10, abendkasse: 15, ermaessigt: 5 } ||
-      rawEvent.prices,
+    price: formatPricesArray(rawEvent.price),
     organizer: pairOrganizer(rawEvent, organizers),
     subtitle: rawEvent.subtitle && subtitleFormat(rawEvent.subtitle),
     tags: rawEvent.tags,
@@ -77,22 +76,26 @@ export const EventCard = ({ props }) => {
     venue: pairVenue(rawEvent, venues),
   };
 
-  formattedEvent.bands && console.log(formattedEvent.bands);
+  // formattedEvent.bands && console.log(formattedEvent.bands);
 
   return (
     <div className="event-card">
       <img src={event.image} alt={'event image'} className="event-card__img" />
-      <div className="event-card__titles">
-        {formattedEvent.title && (
-          <h3 className="event-card__title">{formattedEvent.title}</h3>
-        )}
-        {formattedEvent.subtitle && (
-          <p className="event-card__subtitle">{formattedEvent.subtitle}</p>
-        )}
-      </div>
-      <div className="event-card__main-info">
-        <p>{formattedEvent?.venue.name}</p>
-
+      {formattedEvent.title && (
+        <h3 className="event-card__title">{formattedEvent.title}</h3>
+      )}
+      {formattedEvent.subtitle && (
+        <p className="event-card__subtitle">{formattedEvent.subtitle}</p>
+      )}
+      <a
+        href={formattedEvent?.venue.link}
+        className="event-card__venue"
+        target={'_blank'}
+      >
+        {formattedEvent?.venue.name}
+      </a>
+      {/* <p className="event-card__venue">{formattedEvent?.venue.name}</p> */}
+      <div className="event-card__dates">
         {formattedEvent?.date.map((date) => (
           <p>{date}</p>
         ))}
@@ -102,8 +105,7 @@ export const EventCard = ({ props }) => {
           {formattedEvent.musicians &&
             formattedEvent.musicians.map((musician) => (
               <li>
-                <p>{musician?.firstName},</p>
-                <p>{musician?.lastName}</p>
+                {musician?.firstName}, {musician?.lastName}
               </li>
             ))}
         </ul>
@@ -115,11 +117,10 @@ export const EventCard = ({ props }) => {
       </div>
       {formattedEvent.price && (
         <div className="event-card__prices">
-          <p>{formattedEvent.price.normalPreis} /</p>
-          <p>vvk {formattedEvent.price.vorverkauf} / </p>
-          <p>Ak {formattedEvent.price.abendkasse} / </p>
-          <p>Er {formattedEvent.price.ermaessigt}</p>
-          <BiEuro />
+          <p>
+            {formattedEvent.price || 0}
+            <BiEuro />
+          </p>
         </div>
       )}
 
@@ -128,7 +129,7 @@ export const EventCard = ({ props }) => {
         target={'_blank'}
         className="event-card__link"
       >
-        + INFO
+        INFO + KARTEN
       </a>
     </div>
   );

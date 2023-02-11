@@ -3,5 +3,6 @@ export const dateFormat = (date) => {
   date.forEach((date) => {
     dateArray.push(date);
   });
+
   return dateArray;
 };

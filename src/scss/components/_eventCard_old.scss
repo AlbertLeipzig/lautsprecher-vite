@@ -1,0 +1,197 @@
+@use '../utilities/boxes' as *;
+@use '../utilities/colors' as *;
+.event-card {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-areas:
+    'img img img'
+    'titles titles titles'
+    'main-info main-info main-info'
+    'musicians musicians musicians'
+    'prices prices link';
+
+  width: 85vw;
+  margin: $boxMargin;
+  padding: $boxPadding;
+  border: $border;
+  border-radius: $borderRadius;
+
+  @media screen and (min-width: 481px) {
+    grid-template-areas:
+      'img titles titles'
+      'img musicians musicians'
+      'main-info prices prices'
+      'main-info link link';
+    width: 80vw;
+  }
+  @media screen and (min-width: 769px) {
+    grid-template-columns: repeat(6, 1fr);
+
+    grid-template-areas:
+      'img img titles titles titles titles'
+      'img img musicians musicians musicians musicians'
+      'main-info main-info  . . . . '
+      'main-info main-info . prices prices link';
+    width: 80vw;
+  }
+
+  @media screen and (min-width: 1024px) {
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-areas:
+      'img titles titles'
+      'img main-info main-info'
+      'img musicians musicians'
+      'img prices link';
+  }
+
+  /* div {
+    outline: 1px solid crimson;
+    border-radius: 0;
+  } */
+  &__img {
+    grid-area: img;
+    width: 100%;
+    aspect-ratio: 1/1;
+    object-fit: cover;
+    margin-bottom: 4vh;
+    display: none;
+    @media screen and (min-width: 769px) {
+      display: block;
+    }
+  }
+
+  &__titles {
+    grid-area: titles;
+    font-size: 1.5em;
+    font-weight: 600;
+    margin-bottom: 1vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1vh;
+    background-color: $midLightGrey;
+    padding: 1vh 0;
+    @media screen and (min-width: 769px) {
+      background: none;
+    }
+    @media screen and (min-width: 1024px) {
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+    }
+  }
+
+  &__title {
+    font-weight: 700;
+    color: white;
+    font-size: 2rem;
+    text-align: center;
+    margin: 0.5em 0;
+    @media screen and (min-width: 769px) {
+      background: none;
+      color: $grey;
+    }
+  }
+
+  &__subtitle {
+    /* font-weight: 200; */
+    text-align: center;
+    color: white;
+    padding: 0 1em;
+    @media screen and (min-width: 769px) {
+      background: none;
+      color: $grey;
+    }
+  }
+
+  &__main-info {
+    grid-area: main-info;
+    margin-bottom: 1vh;
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    gap: 1vh;
+    @media screen and (min-width: 481px) {
+      justify-content: center;
+      gap: 3vw;
+    }
+    @media screen and (min-width: 769px) {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      gap: 3vw;
+    }
+    @media screen and (min-width: 1024px) {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: center;
+    }
+  }
+
+  &__musicians {
+    grid-area: musicians;
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 1vh;
+    @media screen and (min-width: 481px) {
+      padding: 0 5vw;
+      ul {
+        display: flex;
+        flex-direction: row;
+      }
+    }
+    @media screen and (min-width: 769px) {
+      justify-self: center;
+      ul {
+        flex-direction: column;
+        justify-content: center;
+        li {
+          display: flex;
+          gap: 1vw;
+        }
+      }
+    }
+    @media screen and (min-width: 1024px) {
+      display: flex;
+      flex-direction: row;
+      align-items: start;
+      gap: 2.5vw;
+    }
+  }
+
+  &__prices {
+    grid-area: prices;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1vh;
+    margin-bottom: 1vh;
+
+    @media screen and (min-width: 481px) {
+      text-align: start;
+      width: fit-content;
+      padding-left: 5vw;
+    }
+    @media screen and (min-width: 769px) {
+      text-align: start;
+      /* position: relative;
+      left: 10vw; */
+      width: fit-content;
+      width: 100%;
+      justify-self: center;
+      text-align: center;
+      padding: 0;
+    }
+  }
+
+  &__link {
+    grid-area: link;
+    text-align: end;
+    display: flex;
+    flex-direction: column;
+    gap: 1vh;
+    margin-bottom: 1vh;
+  }
+}

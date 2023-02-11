@@ -3,7 +3,8 @@ const capitalizeFirstLetter = (string) => {
 };
 
 export const titleFormat = (title) => {
-  const titleArray = title.split(' ');
+  const trimmedTitle = title.length > 43 ? title.slice(0, 40) + '...' : title;
+  const titleArray = trimmedTitle.split(' ');
   const formattedTitleArray = titleArray.map((word) => {
     return capitalizeFirstLetter(word);
   });

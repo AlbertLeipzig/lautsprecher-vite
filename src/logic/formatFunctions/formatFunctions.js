@@ -8,6 +8,7 @@ import { formatMusicianArray } from './formatMusicianArray.js';
 import { formatBandArray } from './formatBandArray.js';
 import { formatPricesArray } from './formatPricesArray.js';
 import { formatDescription } from './formatDescription.js';
+import { linkFormat } from './linkFormat.js';
 export {
   pairOrganizer,
   pairVenue,
@@ -19,4 +20,5 @@ export {
   formatBandArray,
   formatPricesArray,
   formatDescription,
+  linkFormat,
 };
