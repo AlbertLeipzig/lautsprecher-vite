@@ -1,39 +1,148 @@
 @use '../utilities/boxes' as *;
+@use '../utilities/colors' as *;
 .event-card {
-  display: flex;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-areas:
+    'img img'
+    'title title'
+    'subtitle subtitle'
+    'musicians musicians'
+    'venue dates'
+    'prices link ';
+
+  width: 85vw;
   margin: $boxMargin;
-  gap: 5vw;
   padding: $boxPadding;
   border: $border;
   border-radius: $borderRadius;
-  &__main {
-    width: 33%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    img {
-      width: 66%;
-      aspect-ratio: 1/1;
-      margin-bottom: 4vh;
+  gap: 2vh;
+
+  @media screen and (min-width: 769px) {
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-areas:
+      'img title title'
+      'img subtitle subtitle'
+      'img venue dates'
+      'prices musicians musicians'
+      'link musicians musicians';
+  }
+
+  @media screen and (min-width: 1024px) {
+    width: 20vw;
+    grid-template-columns: repeat(2, 1fr);
+    /* background-color: teal; */
+    grid-template-areas:
+      'img img'
+      'title title'
+      'subtitle subtitle'
+      'venue dates'
+      'prices musicians'
+      'link musicians';
+  }
+
+  &__img {
+    grid-area: img;
+    width: 100%;
+    aspect-ratio: 2/1;
+    object-fit: cover;
+    @media screen and (min-width: 479px) {
+      aspect-ratio: 3/1;
     }
-    h3,
-    p {
-      text-align: center;
-      margin: 0.25em 0;
+    @media screen and (min-width: 769px) {
+      aspect-ratio: 1/1;
+    }
+    @media screen and (min-width: 1024px) {
+      width: 20vw;
+      aspect-ratio: 2/1;
     }
   }
-  &__content {
-    p,
-    a,
-    div {
-      margin: 1vh 0;
+
+  &__title {
+    grid-area: title;
+    font-weight: 700;
+    font-size: 2rem;
+    text-align: center;
+    align-items: start;
+    margin-top: 0.5em;
+    letter-spacing: 0.1em;
+    /* background-color: tomato; */
+  }
+
+  &__subtitle {
+    grid-area: subtitle;
+    text-align: center;
+    font-style: italic;
+    /* background-color: crimson; */
+  }
+
+  &__musicians {
+    grid-area: musicians;
+    display: flex;
+    flex-direction: column;
+    li {
+      font-weight: 200;
+      margin-left: 5vw;
+      @media screen and (min-width: 769px) {
+        padding-left: 10vw;
+      }
     }
-    div {
-      display: flex;
-      justify-content: space-between;
+    @media screen and (min-width: 1024px) {
+      /* background-color: maroon; */
+      li {
+        margin: 0;
+        padding: 0;
+      }
     }
-    .tag {
-      font-style: italic;
+    //background-color: rebeccapurple;
+  }
+
+  &__venue {
+    grid-area: venue;
+/*     background-color: violet;*/    
+    text-align: right;
+    font-weight: 700;
+    color: $midLightGrey;
+    padding: 0;
+    padding-right: 0.5em;
+  }
+
+  &__dates {
+    grid-area: dates;
+/*     background-color: wheat;*/
+    text-align: left;
+    padding-left: 0.5em;
+    p {
+      font-weight: 700;
+      color: $midLightGrey;
+    }
+  }
+
+  &__prices {
+    grid-area: prices;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    gap: 1vh;
+    p {
+      font-weight: 400;
+      color: $midLightGrey;
+    }
+    /* background-color: saddlebrown; */
+  }
+
+  &__link {
+    grid-area: link;
+    /* background-color: tomato; */
+    display: flex;
+    justify-content: right;
+    padding: 0;
+    align-items: end;
+    /* background-color: teal; */
+    @media screen and (min-width: 1024px) {
+      justify-content: start;
+      
     }
   }
 }
