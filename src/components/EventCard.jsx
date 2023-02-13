@@ -2,7 +2,6 @@ import { useContext, useEffect, useState } from 'react';
 import { DataContext } from '../context/DataContext.jsx';
 import { BiEuro } from 'react-icons/bi';
 import axios from 'axios';
-import { selectCategory } from '../logic/selectImage.js';
 import {
   pairOrganizer,
   pairVenue,
@@ -71,7 +70,7 @@ export const EventCard = ({ props }) => {
       (rawEvent.date && dateFormat(rawEvent.date)) ||
       dateFormat(['10.10.2023']),
     description: formatDescription(rawEvent.description),
-    image: selectCategory(rawEvent.tags) && imageFormat(rawEvent),
+    image: imageFormat(rawEvent),
     link: linkFormat(rawEvent.link, rawEvent, venues),
     musicians: formatMusicianArray(rawEvent.musicians, musicians),
     price: formatPricesArray(rawEvent.price),

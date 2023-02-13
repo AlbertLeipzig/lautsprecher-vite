@@ -51,7 +51,7 @@ const metalImages = [
 
 const imageIndex = Math.floor(Math.random() * 5);
 
-export const selectCategory = (tags) => {
+export const selectImage = (tags) => {
   if (tags === []) {
     return placeholderImage;
   } else if (tags.includes('metal')) {
