@@ -2,6 +2,7 @@ import { useContext, useEffect, useState } from 'react';
 import { DataContext } from '../context/DataContext.jsx';
 import { BiEuro } from 'react-icons/bi';
 import axios from 'axios';
+import { selectCategory } from '../logic/selectImage.js';
 import {
   pairOrganizer,
   pairVenue,
@@ -18,6 +19,7 @@ import {
 
 export const EventCard = ({ props }) => {
   const rawEvent = props;
+  /* rawEvent?.tags.length > 0 && console.log('RAW EVENT : ', rawEvent); */
   const { musicians, bands, venues, organizers } = useContext(DataContext);
 
   const [event, setEvent] = useState({
@@ -30,6 +32,7 @@ export const EventCard = ({ props }) => {
     organizer: undefined,
     price: undefined,
     description: undefined,
+    tags: [],
     musicians: [],
     bands: [],
   });
@@ -68,17 +71,18 @@ export const EventCard = ({ props }) => {
       (rawEvent.date && dateFormat(rawEvent.date)) ||
       dateFormat(['10.10.2023']),
     description: formatDescription(rawEvent.description),
-    image: imageFormat(rawEvent) || placeholderImage,
+    image: selectCategory(rawEvent.tags) && imageFormat(rawEvent),
     link: linkFormat(rawEvent.link, rawEvent, venues),
     musicians: formatMusicianArray(rawEvent.musicians, musicians),
     price: formatPricesArray(rawEvent.price),
     organizer: pairOrganizer(rawEvent, organizers),
     subtitle: rawEvent.subtitle && subtitleFormat(rawEvent.subtitle),
-    tags: rawEvent.tags,
+    tags: rawEvent.tags || [],
     title: rawEvent.title && titleFormat(rawEvent.title),
     venue: pairVenue(rawEvent, venues),
   };
 
+  console.log('NEW EVENT IMAGE : ', formattedEvent.tags);
   // formattedEvent.bands && console.log(formattedEvent.bands);
 
   return (
