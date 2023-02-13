@@ -59,13 +59,16 @@ export const EventCard = ({ props }) => {
     rawEvent && setEvent(formattedEvent);
   }, [rawEvent]);
 
+  const placeholderImage =
+    'https://images.unsplash.com/photo-1511379938547-c1f69419868d?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NXx8bXVzaWN8ZW58MHx8MHx8&auto=format&fit=crop&w=2000&q=60';
+
   const formattedEvent = {
     bands: formatBandArray(rawEvent.bands, bands),
     date:
       (rawEvent.date && dateFormat(rawEvent.date)) ||
       dateFormat(['10.10.2023']),
     description: formatDescription(rawEvent.description),
-    image: imageFormat(rawEvent),
+    image: imageFormat(rawEvent) || placeholderImage,
     link: linkFormat(rawEvent.link, rawEvent, venues),
     musicians: formatMusicianArray(rawEvent.musicians, musicians),
     price: formatPricesArray(rawEvent.price),
