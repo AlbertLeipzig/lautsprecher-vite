@@ -1,12 +1,38 @@
-import { useContext } from 'react';
+import { useContext, useState } from 'react';
+import axios from "axios"
 import { TitleContext } from '../context/TitleContext.jsx';
+
 export const Contact = () => {
   const { title, setTitle } = useContext(TitleContext);
   setTitle('Kontakt');
+
+  const [contactData, setContactData] = useState({
+    fname: '',
+    lname: '',
+    email: '',
+    message: '',
+  });
+
+  const handleSubmitForm = async (e) => {
+    e.preventDefault();
+    try{
+      const response = await axios.post("http://localhost:5000/api/v1/contact", contactData)
+
+    if(response.status === 200){
+      console.log("Message sent")
+    } else {
+      console.log("Message not sent")
+    }
+  }
+    catch(err){
+      console.error(err)
+    }
+  };
+
   return (
     <div className="contact">
       <h1>{title}</h1>
-      <form action="">
+      <form onSubmit={handleSubmitForm}>
         <label htmlFor="name">
           Vorname *
           <input type="text" id="fname" required maxLength={20} />
@@ -35,7 +61,9 @@ export const Contact = () => {
       <p>* erförderliche Felder</p>
       <p>
         Oder schreib Uns eine E-Mail auf{' '}
-        <a href="mailto:mail@mail.com">mail@mail.com</a>
+        <a href="mailto:lautsprecherleipzig@gmail.com">
+          lautsprecherleipzig@gmail.com
+        </a>
       </p>
     </div>
   );
