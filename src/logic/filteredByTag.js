@@ -14,7 +14,7 @@ const filteredByTag = (events, filter) => {
 
   events.forEach((event) => {
     const tagsArray = Object.values(listEventWords(event));
-    const filterArray = filter.tag;
+    const filterArray = filter;
     tagsArray.forEach((tag) => {
       if (tag.toLowerCase().includes(filterArray.toLowerCase())) {
         filteredEvents.push(event);

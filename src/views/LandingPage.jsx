@@ -18,8 +18,11 @@ export const LandingPage = () => {
 
   const getEvents = async () => {
     try {
-      const res = await axios.get('http://localhost:5000/api/v1/events');
+      const res = await axios.get(
+        `https://tame-blue-cuff.cyclic.app/api/v2/events`
+      );
       const data = res.data;
+      console.log('CYCLIC : ', data);
       setEvents(data);
     } catch (e) {
       console.error(e);
@@ -28,7 +31,9 @@ export const LandingPage = () => {
 
   const getMusicians = async () => {
     try {
-      const res = await axios.get('http://localhost:5000/api/v1/musicians');
+      const res = await axios.get(
+        'https://tame-blue-cuff.cyclic.app/api/v1/musicians'
+      );
       const data = res.data;
       setMusicians(data);
     } catch (e) {
@@ -38,7 +43,9 @@ export const LandingPage = () => {
 
   const getBands = async () => {
     try {
-      const res = await axios.get('http://localhost:5000/api/v1/bands');
+      const res = await axios.get(
+        'https://tame-blue-cuff.cyclic.app/api/v1/bands'
+      );
       const data = res.data;
       setBands(data);
     } catch (e) {
@@ -48,7 +55,9 @@ export const LandingPage = () => {
 
   const getOrganizers = async () => {
     try {
-      const res = await axios.get('http://localhost:5000/api/v1/organizers');
+      const res = await axios.get(
+        'https://tame-blue-cuff.cyclic.app/api/v1/organizers'
+      );
       const data = res.data;
       setOrganizers(data);
     } catch (e) {
@@ -58,7 +67,9 @@ export const LandingPage = () => {
 
   const getVenues = async () => {
     try {
-      const res = await axios.get('http://localhost:5000/api/v1/venues');
+      const res = await axios.get(
+        'https://tame-blue-cuff.cyclic.app/api/v1/venues'
+      );
       const data = res.data;
       setVenues(data);
     } catch (e) {
@@ -73,11 +84,6 @@ export const LandingPage = () => {
     getBands();
     getOrganizers();
   }, []);
-
-  /*   console.log(musicians);
-  console.log(venues);
-  console.log(bands);
-  console.log(organizers); */
 
   return (
     <div className="landing-page">

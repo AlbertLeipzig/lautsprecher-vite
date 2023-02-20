@@ -1,15 +1,19 @@
-import { useContext } from 'react';
+import { useContext, useEffect } from 'react';
 import { BsMusicNote } from 'react-icons/bs';
 import { TitleContext } from '../context/TitleContext.jsx';
 export const About = () => {
   const { title, setTitle } = useContext(TitleContext);
-  setTitle('About');
+  useEffect(() => {
+    setTitle('About');
+  });
   return (
     <div className="about">
       <h1>{title}</h1>
       <section>
         <h2>Mission</h2>
-        <p className='about__mission'>Lautsprecher will das Musiklebens der Stadt Leipzig verbessern.</p>
+        <p className="about__mission">
+          Lautsprecher will das Musiklebens der Stadt Leipzig verbessern.
+        </p>
       </section>
       <section>
         <h2>Ziele</h2>

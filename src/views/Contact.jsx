@@ -1,10 +1,9 @@
-import { useContext, useState } from 'react';
+import { useContext, useState, useEffect } from 'react';
 import axios from "axios"
 import { TitleContext } from '../context/TitleContext.jsx';
 
 export const Contact = () => {
   const { title, setTitle } = useContext(TitleContext);
-  setTitle('Kontakt');
 
   const [contactData, setContactData] = useState({
     fname: '',
@@ -28,6 +27,10 @@ export const Contact = () => {
       console.error(err)
     }
   };
+
+  useEffect(() => {
+    setTitle('Kontakt')
+  })
 
   return (
     <div className="contact">

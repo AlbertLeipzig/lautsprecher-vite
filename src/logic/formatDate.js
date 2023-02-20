@@ -9,22 +9,20 @@ DATE FROM BACK END
 */
 
 const convertDateStringFromInput = (date) => {
-  /* const dateFormat = new Intl.DateTimeFormat('en-US').format(date); */
-  const datePartials = [
-    parseInt(date.slice(5, 7)),
-    parseInt(date.slice(8, 10)),
-    parseInt(date.slice(0, 4)),
-  ];
-  const dateString = datePartials.toString();
-  return datePartials;
+  return `${date.slice(8, 10)}-${date.slice(5, 7)}-${date.slice(0, 4)}`;
 };
 
 const convertDateStringFromDb = (date) => {
-  const day = date[0]?.day;
-  const month = date[0]?.month;
-  const year = date[0]?.year;
-  const datePartials = [day || 1, month || 1, year || 2023];
-  return datePartials;
+  return date.slice(0, 10);
 };
 
-export { convertDateStringFromInput, convertDateStringFromDb };
+const convertDateArrayFromDb = (dateArray) => {
+  let convertedDateArray = [];
+  dateArray.forEach((date) => {
+    convertedDateArray.push(convertDateStringFromDb(date));
+  });
+  console.log('convertedDateArray : ', convertedDateArray);
+  return convertedDateArray;
+};
+
+export { convertDateStringFromInput, convertDateArrayFromDb };
