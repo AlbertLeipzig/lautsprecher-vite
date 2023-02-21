@@ -22,7 +22,6 @@ export const LandingPage = () => {
         `https://tame-blue-cuff.cyclic.app/api/v1/events`
       );
       const data = res.data;
-      console.log('CYCLIC : ', data);
       setEvents(data);
     } catch (e) {
       console.error(e);

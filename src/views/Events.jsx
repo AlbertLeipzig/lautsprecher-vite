@@ -1,8 +1,6 @@
 import { useEffect, useState, useContext } from 'react';
 import { DataContext } from '../context/DataContext.jsx';
 import { TitleContext } from '../context/TitleContext.jsx';
-import { eventFilter } from '../logic/eventFilter';
-import { EventsPagination } from '../components/EventsPagination.jsx';
 import { EventCard } from '../components/EventCard.jsx';
 import axios from 'axios';
 import { filteredByDate } from '../logic/filteredByDate.js';
@@ -15,8 +13,6 @@ export const Events = () => {
   const { events, setEvents } = useContext(DataContext);
   const { title, setTitle } = useContext(TitleContext);
   const [filteredEvents, setFilteredEvents] = useState(events);
-
-/* console.log("ORIGINAL DATE : ", filter.date) */
 
   const recoverData = async () => {
     try {
@@ -34,39 +30,25 @@ export const Events = () => {
   };
 
   const filterData = (events, filter) => {
-    /*     console.log("DATE filter : ", filter.date);
-    console.log("TAG filter : ", filter.tag);
-    console.log('filterData events : ', events); */
     if (filter.date === '' && filter.tag === '') {
       setFilteredEvents(events);
-      // date is defined
-      /* console.log("no filter") */
     } else if (filter.date !== '' && filter.tag === '') {
       setFilteredEvents(filteredByDate(events, filter.date));
-      // tag is defined
-      /* console.log("filter date : ", filter.date) */
     } else if (filter.date === '' && filter.tag !== '') {
       setFilteredEvents(filteredByTag(events, filter.tag));
-      // both are defined
-      /* console.log("filter tag : ", filter.tag) */
     } else if (filter.date !== '' && filter.tag !== '') {
       setFilteredEvents(filteredByTagAndDate(events, filter.tag, filter.date));
-      /* console.log("both are defined") */
     } else {
       setFilteredEvents(events);
-      /* console.log("none is defined") */
     }
   };
 
   useEffect(() => {
     setTitle('Veranstaltungen');
     const rawEvents = events.length <= 0 ? recoverData() : events;
-    /* console.log("rawEvents : ", rawEvents) */
-    const filteredEvents = filterData(rawEvents, filter);
-    /* console.log('filteredEvents : ', filteredEvents); */
+    filterData(rawEvents, filter);
   }, [filter, events]);
 
-  /* console.log(filteredEvents); */
 
   return (
     <div className="events">
