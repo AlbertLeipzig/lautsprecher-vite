@@ -6,7 +6,8 @@ import { EventsPagination } from '../components/EventsPagination.jsx';
 import { EventCard } from '../components/EventCard.jsx';
 import axios from 'axios';
 import { filteredByDate } from '../logic/filteredByDate.js';
-import {  filteredByTag } from '../logic/filteredByTag.js';
+import { filteredByTag } from '../logic/filteredByTag.js';
+import { filteredByTagAndDate } from '../logic/filteredByTagAndDate.js';
 
 export const Events = () => {
   const [filter, setFilter] = useState({ date: '', tag: '' });
@@ -15,6 +16,7 @@ export const Events = () => {
   const { title, setTitle } = useContext(TitleContext);
   const [filteredEvents, setFilteredEvents] = useState(events);
 
+/* console.log("ORIGINAL DATE : ", filter.date) */
 
   const recoverData = async () => {
     try {
@@ -31,9 +33,8 @@ export const Events = () => {
     }
   };
 
-
   const filterData = (events, filter) => {
-/*     console.log("DATE filter : ", filter.date);
+    /*     console.log("DATE filter : ", filter.date);
     console.log("TAG filter : ", filter.tag);
     console.log('filterData events : ', events); */
     if (filter.date === '' && filter.tag === '') {
@@ -48,9 +49,12 @@ export const Events = () => {
       setFilteredEvents(filteredByTag(events, filter.tag));
       // both are defined
       /* console.log("filter tag : ", filter.tag) */
+    } else if (filter.date !== '' && filter.tag !== '') {
+      setFilteredEvents(filteredByTagAndDate(events, filter.tag, filter.date));
+      /* console.log("both are defined") */
     } else {
       setFilteredEvents(events);
-      /* console.log("both are defined") */
+      /* console.log("none is defined") */
     }
   };
 
@@ -62,7 +66,7 @@ export const Events = () => {
     /* console.log('filteredEvents : ', filteredEvents); */
   }, [filter, events]);
 
-  console.log(filteredEvents)
+  /* console.log(filteredEvents); */
 
   return (
     <div className="events">
@@ -97,7 +101,7 @@ export const Events = () => {
           </label>
         </div>
       )}
-      
+
       <div className="events-container">
         {filteredEvents &&
           Object.values(filteredEvents).map((event) => (

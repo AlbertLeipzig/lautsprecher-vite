@@ -9,28 +9,37 @@ DATE FROM BACK END
 */
 
 const convertDateStringFromInput = (date) => {
-  const formattedDate = `${date.slice(8, 10)}-${date.slice(5, 7)}-${date.slice(0, 4)}`;
-  /* console.log('formattedDay - INPUT : ', formattedDate); */
-  return formattedDate
+  const rawInput = date.split('-');
+  const rawInputDay = rawInput[2];
+  const rawInputMonth = rawInput[1];
+  const rawInputYear = rawInput[0];
+  const formattedDate = `${rawInputDay}-${rawInputMonth}-${rawInputYear}`;
+  return formattedDate;
 };
 
 const convertDateStringFromDb = (date) => {
-  // convert date to DD-MM-YYYY
+  // takes hours out of date string
+
   const dateNoHour = date.split(',');
 
-  const rawDay = dateNoHour[0].split('/');
+  const rawDate = dateNoHour[0].split('/');
 
-  const formattedDay = `${rawDay[1]}-${rawDay[0]}-${rawDay[2]}`;
+  const rawDay = rawDate[0].length === 1 ? `0${rawDate[0]}` : rawDate[0];
+  const rawMonth = rawDate[1].length === 1 ? `0${rawDate[1]}` : rawDate[1];
+  const rawYear = rawDate[2];
 
-  /* console.log('formattedDay - DB : ', formattedDay); */
+  const formattedDay = `${rawDay}-${rawMonth}-${rawYear}`;
+
   return formattedDay;
 };
 
 const convertDateArrayFromDb = (dateArray) => {
   let formattedDateArray = [];
+
   dateArray.map((date) => {
     formattedDateArray.push(convertDateStringFromDb(date));
   });
+  console.log('formattedDateArray : ', formattedDateArray);
   return formattedDateArray;
 };
 

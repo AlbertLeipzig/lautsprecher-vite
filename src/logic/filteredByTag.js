@@ -1,8 +1,18 @@
 const filteredByTag = (events, filter) => {
   let filteredEvents = [];
+
+  const stringPartials = (string) => {
+    const words = string.split(' ');
+
+    return words;
+  };
+
   const listEventWords = (document) => {
     let eventWords = [];
-    document.name && eventWords.push(document.name);
+    document.title && eventWords.push(document.title);
+    document.title && eventWords.push(...stringPartials(document.title));
+    document.subtitle && eventWords.push(document.subtitle);
+    document.subtitle && eventWords.push(...stringPartials(document.subtitle));
     document.firstName && eventWords.push(document.firstName);
     document.lastName && eventWords.push(document.lastName);
     document.location && eventWords.push(document.location);

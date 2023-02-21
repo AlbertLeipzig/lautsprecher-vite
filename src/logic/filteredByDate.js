@@ -8,16 +8,10 @@ const filteredByDate = (events, filterDate) => {
   const formattedFilterDate = convertDateStringFromInput(filterDate);
   events.forEach((event) => {
     const formattedDateArrayFromDb = convertDateArrayFromDb(event.date);
-    /* console.log(
-      'filteredByDate - formattedDateArrayFromDb : ',
-      formattedDateArrayFromDb
-    ); */
-    /* console.log('filteredByDate - filterDate : ', filterDate); */
-
-    /* console.log(formattedFilterDate, formattedDateArrayFromDb) */
-    formattedDateArrayFromDb.includes(formattedFilterDate) && filteredEvents.push(event);
+    formattedDateArrayFromDb.includes(formattedFilterDate) &&
+      filteredEvents.push(event);
   });
-
+  
   return filteredEvents;
 };
 
