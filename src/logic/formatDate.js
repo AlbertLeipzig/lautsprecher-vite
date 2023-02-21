@@ -9,22 +9,38 @@ DATE FROM BACK END
 */
 
 const convertDateStringFromInput = (date) => {
-  /* const dateFormat = new Intl.DateTimeFormat('en-US').format(date); */
-  const datePartials = [
-    parseInt(date.slice(5, 7)),
-    parseInt(date.slice(8, 10)),
-    parseInt(date.slice(0, 4)),
-  ];
-  const dateString = datePartials.toString();
-  return datePartials;
+  const rawInput = date.split('-');
+  const rawInputDay = rawInput[2];
+  const rawInputMonth = rawInput[1];
+  const rawInputYear = rawInput[0];
+  const formattedDate = `${rawInputDay}-${rawInputMonth}-${rawInputYear}`;
+  return formattedDate;
 };
 
 const convertDateStringFromDb = (date) => {
-  const day = date[0]?.day;
-  const month = date[0]?.month;
-  const year = date[0]?.year;
-  const datePartials = [day || 1, month || 1, year || 2023];
-  return datePartials;
+  // takes hours out of date string
+
+  const dateNoHour = date.split(',');
+
+  const rawDate = dateNoHour[0].split('/');
+
+  const rawDay = rawDate[0].length === 1 ? `0${rawDate[0]}` : rawDate[0];
+  const rawMonth = rawDate[1].length === 1 ? `0${rawDate[1]}` : rawDate[1];
+  const rawYear = rawDate[2];
+
+  const formattedDay = `${rawDay}-${rawMonth}-${rawYear}`;
+
+  return formattedDay;
 };
 
-export { convertDateStringFromInput, convertDateStringFromDb };
+const convertDateArrayFromDb = (dateArray) => {
+  let formattedDateArray = [];
+
+  dateArray.map((date) => {
+    formattedDateArray.push(convertDateStringFromDb(date));
+  });
+  console.log('formattedDateArray : ', formattedDateArray);
+  return formattedDateArray;
+};
+
+export { convertDateStringFromInput, convertDateArrayFromDb };

@@ -81,7 +81,6 @@ export const EventCard = ({ props }) => {
     venue: pairVenue(rawEvent, venues),
   };
 
-  console.log('NEW EVENT IMAGE : ', formattedEvent.tags);
   // formattedEvent.bands && console.log(formattedEvent.bands);
 
   return (
@@ -93,13 +92,13 @@ export const EventCard = ({ props }) => {
       {formattedEvent.subtitle && (
         <p className="event-card__subtitle">{formattedEvent.subtitle}</p>
       )}
-      <a
+      {formattedEvent.venue && <a
         href={formattedEvent?.venue.link}
         className="event-card__venue"
         target={'_blank'}
       >
         {formattedEvent?.venue.name}
-      </a>
+      </a>}
       {/* <p className="event-card__venue">{formattedEvent?.venue.name}</p> */}
       <div className="event-card__dates">
         {formattedEvent?.date.map((date) => (

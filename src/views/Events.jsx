@@ -1,74 +1,67 @@
 import { useEffect, useState, useContext } from 'react';
 import { DataContext } from '../context/DataContext.jsx';
 import { TitleContext } from '../context/TitleContext.jsx';
-import { eventFilter } from '../logic/eventFilter';
-import { EventsPagination } from '../components/EventsPagination.jsx';
 import { EventCard } from '../components/EventCard.jsx';
 import axios from 'axios';
+import { filteredByDate } from '../logic/filteredByDate.js';
+import { filteredByTag } from '../logic/filteredByTag.js';
+import { filteredByTagAndDate } from '../logic/filteredByTagAndDate.js';
+
 export const Events = () => {
   const [filter, setFilter] = useState({ date: '', tag: '' });
-  const [error, setError] = useState('');
-  const [loadingEvents, setLoadingEvents] = useState(true);
+  const [error, setError] = useState(undefined);
   const { events, setEvents } = useContext(DataContext);
   const { title, setTitle } = useContext(TitleContext);
   const [filteredEvents, setFilteredEvents] = useState(events);
-  const [displayedEvents, setDisplayedEvents] = useState([]);
 
-  setTitle('Veranstaltungen');
-
-  const recoverData = () => {
-    axios
-      .get('http://localhost:5000/api/v1/events')
-      .then((res) => {
-        const data = res.data;
-        setError(undefined);
-        setLoadingEvents(false);
-        setEvents(data);
-      })
-      .catch((e) => {
-        setLoadingEvents(false);
-        setError(
-          `Es tut uns leid, derzeit sind keine Veranstaltung vorhanden. Kommt bitte auf eine späteren Zeitpunkt zurück. Wir freuen uns auf Dich!`
-        );
-        console.error(e);
-      });
+  const recoverData = async () => {
+    try {
+      const res = await axios.get(
+        `https://tame-blue-cuff.cyclic.app/api/v1/events`
+      );
+      const data = res.data;
+      setEvents(data);
+    } catch (e) {
+      setError(
+        'Es tut uns leid, derzeit sind keine Veranstaltung vorhanden. Kommt bitte auf eine späteren Zeitpunkt zurück. Wir freuen uns auf Dich!'
+      );
+      console.error(e);
+    }
   };
 
-  // in case there's no data
-
-  events.length <= 0 && recoverData();
-
-  /* filter events */
-
-  /* displayed events */
-
-  useEffect(() => {
-    displayedEvents.length <= 25
-      ? setDisplayedEvents(filteredEvents)
-      : setDisplayedEvents(filteredEvents.slice(0, 25));
-  }, [filteredEvents]);
-
-  useEffect(() => {
-    // no filter is defined
+  const filterData = (events, filter) => {
     if (filter.date === '' && filter.tag === '') {
       setFilteredEvents(events);
-      // date is defined
     } else if (filter.date !== '' && filter.tag === '') {
-      setFilteredEvents(eventFilter(events, filter.date));
-      // tag is defined
+      setFilteredEvents(filteredByDate(events, filter.date));
     } else if (filter.date === '' && filter.tag !== '') {
-      setFilteredEvents(eventFilter(events, filter.tag));
-      // both are defined
+      setFilteredEvents(filteredByTag(events, filter.tag));
+    } else if (filter.date !== '' && filter.tag !== '') {
+      setFilteredEvents(filteredByTagAndDate(events, filter.tag, filter.date));
     } else {
       setFilteredEvents(events);
     }
+  };
+
+  useEffect(() => {
+    setTitle('Veranstaltungen');
+    const rawEvents = events.length <= 0 ? recoverData() : events;
+    filterData(rawEvents, filter);
   }, [filter, events]);
 
-const firstEvent = events[0];
 
   return (
     <div className="events">
       {title && <h1>{title}</h1>}
+      {error && (
+        <div className="events__error-container">
+          <p className="events__error">{error}</p>
+          <img
+            src="https://images.unsplash.com/photo-1617405207340-954e2e19755c?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NXx8ZW1wdHklMjBjb25jZXJ0fGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=600&q=60"
+            alt=""
+          />
+        </div>
+      )}
       {events && (
         <div className="event__filter-container">
           <label className="event__filter">
@@ -90,28 +83,12 @@ const firstEvent = events[0];
           </label>
         </div>
       )}
-      {!events && loadingEvents !== false && (
-        <p className="events__loading">Die Events sind gleich da ...</p>
-      )}
-      {error && (
-        <div className="events__error-container">
-          <p className="events__error">{error}</p>
-          <img
-            src="https://images.unsplash.com/photo-1617405207340-954e2e19755c?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NXx8ZW1wdHklMjBjb25jZXJ0fGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=600&q=60"
-            alt=""
-          />
-        </div>
-      )}
+
       <div className="events-container">
-        {displayedEvents &&
-          Object.values(displayedEvents).map((event) => (
+        {filteredEvents &&
+          Object.values(filteredEvents).map((event) => (
             <EventCard props={event} />
           ))}
-      </div>
-      <div className="events__pagination">
-        {filteredEvents.length > 25 && (
-          <EventsPagination props={filteredEvents} />
-        )}
       </div>
     </div>
   );
