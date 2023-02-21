@@ -19,7 +19,7 @@ export const LandingPage = () => {
   const getEvents = async () => {
     try {
       const res = await axios.get(
-        `https://tame-blue-cuff.cyclic.app/api/v2/events`
+        `https://tame-blue-cuff.cyclic.app/api/v1/events`
       );
       const data = res.data;
       console.log('CYCLIC : ', data);

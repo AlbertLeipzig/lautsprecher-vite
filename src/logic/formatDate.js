@@ -9,20 +9,29 @@ DATE FROM BACK END
 */
 
 const convertDateStringFromInput = (date) => {
-  return `${date.slice(8, 10)}-${date.slice(5, 7)}-${date.slice(0, 4)}`;
+  const formattedDate = `${date.slice(8, 10)}-${date.slice(5, 7)}-${date.slice(0, 4)}`;
+  /* console.log('formattedDay - INPUT : ', formattedDate); */
+  return formattedDate
 };
 
 const convertDateStringFromDb = (date) => {
-  return date.slice(0, 10);
+  // convert date to DD-MM-YYYY
+  const dateNoHour = date.split(',');
+
+  const rawDay = dateNoHour[0].split('/');
+
+  const formattedDay = `${rawDay[1]}-${rawDay[0]}-${rawDay[2]}`;
+
+  /* console.log('formattedDay - DB : ', formattedDay); */
+  return formattedDay;
 };
 
 const convertDateArrayFromDb = (dateArray) => {
-  let convertedDateArray = [];
-  dateArray.forEach((date) => {
-    convertedDateArray.push(convertDateStringFromDb(date));
+  let formattedDateArray = [];
+  dateArray.map((date) => {
+    formattedDateArray.push(convertDateStringFromDb(date));
   });
-  console.log('convertedDateArray : ', convertedDateArray);
-  return convertedDateArray;
+  return formattedDateArray;
 };
 
 export { convertDateStringFromInput, convertDateArrayFromDb };

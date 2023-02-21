@@ -11,11 +11,9 @@ import {  filteredByTag } from '../logic/filteredByTag.js';
 export const Events = () => {
   const [filter, setFilter] = useState({ date: '', tag: '' });
   const [error, setError] = useState(undefined);
-  const [loadingEvents, setLoadingEvents] = useState(true);
   const { events, setEvents } = useContext(DataContext);
   const { title, setTitle } = useContext(TitleContext);
   const [filteredEvents, setFilteredEvents] = useState(events);
-  const [displayedEvents, setDisplayedEvents] = useState([]);
 
 
   const recoverData = async () => {
@@ -35,29 +33,36 @@ export const Events = () => {
 
 
   const filterData = (events, filter) => {
-    // console.log("DATE filter : ", filter.date);
-    // console.log("TAG filter : ", filter.tag);
-    // console.log('filterData events : ', events);
+/*     console.log("DATE filter : ", filter.date);
+    console.log("TAG filter : ", filter.tag);
+    console.log('filterData events : ', events); */
     if (filter.date === '' && filter.tag === '') {
       setFilteredEvents(events);
       // date is defined
+      /* console.log("no filter") */
     } else if (filter.date !== '' && filter.tag === '') {
       setFilteredEvents(filteredByDate(events, filter.date));
       // tag is defined
+      /* console.log("filter date : ", filter.date) */
     } else if (filter.date === '' && filter.tag !== '') {
       setFilteredEvents(filteredByTag(events, filter.tag));
       // both are defined
+      /* console.log("filter tag : ", filter.tag) */
     } else {
       setFilteredEvents(events);
+      /* console.log("both are defined") */
     }
   };
 
   useEffect(() => {
     setTitle('Veranstaltungen');
     const rawEvents = events.length <= 0 ? recoverData() : events;
+    /* console.log("rawEvents : ", rawEvents) */
     const filteredEvents = filterData(rawEvents, filter);
-    console.log('filteredEvents : ', filteredEvents);
+    /* console.log('filteredEvents : ', filteredEvents); */
   }, [filter, events]);
+
+  console.log(filteredEvents)
 
   return (
     <div className="events">
@@ -98,11 +103,6 @@ export const Events = () => {
           Object.values(filteredEvents).map((event) => (
             <EventCard props={event} />
           ))}
-      </div>
-      <div className="events__pagination">
-        {filteredEvents.length > 25 && (
-          <EventsPagination props={filteredEvents} />
-        )}
       </div>
     </div>
   );
