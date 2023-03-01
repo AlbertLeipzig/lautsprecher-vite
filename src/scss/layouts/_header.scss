@@ -1,6 +1,8 @@
 @use '../utilities/utilities' as *;
 
 header {
+  position: absolute;
+  top: 0;
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   grid-template-areas:
@@ -9,6 +11,7 @@ header {
   padding: 2vh 5vw;
   background-color: $white;
   padding: 2vh 4vw;
+  min-height: 5vh;
   @media screen and (min-width: 769px) {
     grid-template-columns: 60vw 40vw;
     grid-template-areas: 'logo nav';
@@ -70,6 +73,9 @@ header {
       background-color: $primaryColor;
       a {
         color: $white;
+      }
+      @media screen and (min-width: 769px) {
+        gap: 1.5vw;
       }
     }
   }

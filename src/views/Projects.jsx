@@ -1,5 +1,6 @@
-import { useState, useEffect } from 'react';
-
+import { useState, useEffect, useContext } from 'react';
+import { TitleContext } from '../context/TitleContext.jsx';
+import { HeaderLogoContext } from '../context/HeaderLogoContext.jsx';
 const projects = [
   {
     title : "default",
@@ -34,8 +35,10 @@ const projects = [
 export const Projects = () => {
   const [content, setContent] = useState({});
   const [filter, setFilter] = useState('default');
+  const [headerLogo, setHeaderLogo] = useState(true);
 
   useEffect(() => {
+    setHeaderLogo(false);
     projects.forEach((project) => {
       project.title === filter && setContent(project);
     });

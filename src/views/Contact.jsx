@@ -1,10 +1,11 @@
 import { useContext, useState, useEffect } from 'react';
 import axios from "axios"
 import { TitleContext } from '../context/TitleContext.jsx';
+import { HeaderLogoContext } from '../context/HeaderLogoContext.jsx';
 
 export const Contact = () => {
   const { title, setTitle } = useContext(TitleContext);
-
+  const { headerLogo, setHeaderLogo } = useContext(HeaderLogoContext);
   const [contactData, setContactData] = useState({
     fname: '',
     lname: '',
@@ -29,6 +30,7 @@ export const Contact = () => {
   };
 
   useEffect(() => {
+    setHeaderLogo(true)
     setTitle('Kontakt')
   })
 

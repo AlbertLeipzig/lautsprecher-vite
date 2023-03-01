@@ -1,5 +1,12 @@
+import { useContext, useEffect } from 'react';
+import { HeaderLogoContext } from '../context/HeaderLogoContext';
+
 import { Link } from 'react-router-dom';
 export const Faq = () => {
+  const { setHeaderLogo } = useContext(HeaderLogoContext);
+  useEffect(() => {
+    setHeaderLogo(true);
+  }, []);
   return (
     <div className="faq">
       <h1>FAQ</h1>

@@ -2,9 +2,13 @@ import { Link } from 'react-router-dom';
 import { useEffect, useState, useContext } from 'react';
 import { DataContext } from '../context/DataContext';
 import axios from 'axios';
+import { HeaderLogoContext } from '../context/HeaderLogoContext';
+
 
 export const LandingPage = () => {
+  const { setHeaderLogo } = useContext(HeaderLogoContext);
   const {
+    events,
     setEvents,
     musicians,
     setMusicians,
@@ -22,7 +26,9 @@ export const LandingPage = () => {
         `https://tame-blue-cuff.cyclic.app/api/v1/events`
       );
       const data = res.data;
+      console.log(data)
       setEvents(data);
+      console.log('EVENTS', events);
     } catch (e) {
       console.error(e);
     }
@@ -77,6 +83,7 @@ export const LandingPage = () => {
   };
 
   useEffect(() => {
+    setHeaderLogo(false);
     getEvents();
     getVenues();
     getMusicians();

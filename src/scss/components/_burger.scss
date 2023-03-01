@@ -5,7 +5,7 @@ $animation-duration: 6s;
 @mixin burger-line {
   width: 40px;
   height: 3px;
-  background-color: $grey;
+  background-color: white;
   border-radius: $borderRadius;
   animation: burger-line $animation-duration infinite;
 }
@@ -105,10 +105,10 @@ $animation-duration: 6s;
 
 @keyframes burger-line {
   0% {
-    background-color: $grey;
+    background-color: white;
   }
   15% {
-    background-color: $grey;
+    background-color: white;
   }
   40% {
     background-color: $primaryColor;
@@ -117,6 +117,6 @@ $animation-duration: 6s;
     background-color: $primaryColor;
   }
   100% {
-    background-color: $grey;
+    background-color: white;
   }
 }

@@ -1,5 +1,12 @@
+import { useContext, useEffect } from 'react';
+import { HeaderLogoContext } from '../context/HeaderLogoContext.jsx';
 import { Link } from 'react-router-dom';
 export const Collaborate = () => {
+  const { setHeaderLogo } = useContext(HeaderLogoContext);
+  useEffect(() => {
+    setHeaderLogo(false);
+  });
+
   return (
     <div className="collaborate">
       <h1>Collaborate</h1>
