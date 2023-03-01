@@ -1,6 +1,7 @@
 import { useEffect, useState, useContext } from 'react';
 import { DataContext } from '../context/DataContext.jsx';
 import { TitleContext } from '../context/TitleContext.jsx';
+import { HeaderLogoContext } from '../context/HeaderLogoContext.jsx';
 import { EventCard } from '../components/EventCard.jsx';
 import axios from 'axios';
 import { filteredByDate } from '../logic/filteredByDate.js';
@@ -13,6 +14,8 @@ export const Events = () => {
   const { events, setEvents } = useContext(DataContext);
   const { title, setTitle } = useContext(TitleContext);
   const [filteredEvents, setFilteredEvents] = useState(events);
+  const { setHeaderLogo } = useContext(HeaderLogoContext);
+
 
   const recoverData = async () => {
     try {
@@ -44,6 +47,7 @@ export const Events = () => {
   };
 
   useEffect(() => {
+    setHeaderLogo(true);
     setTitle('Veranstaltungen');
     const rawEvents = events.length <= 0 ? recoverData() : events;
     filterData(rawEvents, filter);

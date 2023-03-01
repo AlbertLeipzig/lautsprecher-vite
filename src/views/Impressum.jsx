@@ -1,4 +1,12 @@
+import {useContext, useEffect} from 'react';
+import { HeaderLogoContext } from '../context/HeaderLogoContext';
+
+
 export const Impressum = () => {
+  const { setHeaderLogo } = useContext(HeaderLogoContext);
+  useEffect(() => {
+    setHeaderLogo(true);
+  })
   return (
     <div>
       <h1>Impressum</h1>

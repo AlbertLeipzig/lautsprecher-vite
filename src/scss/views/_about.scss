@@ -24,14 +24,6 @@
     @media screen and (min-width: 1025px) {
       display: flex;
     }
-    /* &::before {
-      content: '•';
-      color: $primaryColor;
-      font-weight: bold;
-      display: inline-block;
-      width: 1em;
-      margin-left: -1em;
-    } */
   }
 
   &__bullet {

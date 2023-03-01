@@ -22,11 +22,13 @@ const convertDateStringFromDb = (date) => {
 
   const dateNoHour = date.split(',');
 
-  const rawDate = dateNoHour[0].split('/');
+  const rawDate = dateNoHour[0].split('-');
 
   const rawDay = rawDate[0].length === 1 ? `0${rawDate[0]}` : rawDate[0];
   const rawMonth = rawDate[1].length === 1 ? `0${rawDate[1]}` : rawDate[1];
   const rawYear = rawDate[2];
+  const rawDayTime = dateNoHour[1]
+  console.log('rawDayTime : ', rawDayTime)
 
   const formattedDay = `${rawDay}-${rawMonth}-${rawYear}`;
 
