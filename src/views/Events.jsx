@@ -16,13 +16,13 @@ export const Events = () => {
   const [filteredEvents, setFilteredEvents] = useState(events);
   const { setHeaderLogo } = useContext(HeaderLogoContext);
 
-
   const recoverData = async () => {
     try {
       const res = await axios.get(
         `https://tame-blue-cuff.cyclic.app/api/v1/events`
       );
       const data = res.data;
+      setError(undefined)
       setEvents(data);
     } catch (e) {
       setError(
@@ -47,12 +47,12 @@ export const Events = () => {
   };
 
   useEffect(() => {
+    recoverData();
     setHeaderLogo(true);
     setTitle('Veranstaltungen');
     const rawEvents = events.length <= 0 ? recoverData() : events;
     filterData(rawEvents, filter);
   }, [filter, events]);
-
 
   return (
     <div className="events">

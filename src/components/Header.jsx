@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import { Burger } from './Burger';
 import logo from '../../public/favicon.jpg';
 import { BurgerContext } from '../context/BurgerContext.jsx';
+
 export const Header = () => {
   const { burgerState } = useContext(BurgerContext);
   const { headerLogo } = useContext(HeaderLogoContext);

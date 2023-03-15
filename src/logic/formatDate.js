@@ -28,9 +28,7 @@ const convertDateStringFromDb = (date) => {
   const rawMonth = rawDate[1].length === 1 ? `0${rawDate[1]}` : rawDate[1];
   const rawYear = rawDate[2];
   const rawDayTime = dateNoHour[1]
-  console.log('rawDayTime : ', rawDayTime)
-
-  const formattedDay = `${rawDay}-${rawMonth}-${rawYear}`;
+  const formattedDay = `${rawDay}-${rawMonth}-${rawYear} : ${rawDayTime}`;
 
   return formattedDay;
 };
