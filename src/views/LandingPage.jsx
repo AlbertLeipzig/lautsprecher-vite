@@ -4,7 +4,6 @@ import { DataContext } from '../context/DataContext';
 import axios from 'axios';
 import { HeaderLogoContext } from '../context/HeaderLogoContext';
 
-
 export const LandingPage = () => {
   const { setHeaderLogo } = useContext(HeaderLogoContext);
   const {
@@ -28,43 +27,6 @@ export const LandingPage = () => {
       const data = res.data;
       console.log(data)
       setEvents(data);
-      console.log('EVENTS', events);
-    } catch (e) {
-      console.error(e);
-    }
-  };
-
-  const getMusicians = async () => {
-    try {
-      const res = await axios.get(
-        'https://tame-blue-cuff.cyclic.app/api/v1/musicians'
-      );
-      const data = res.data;
-      setMusicians(data);
-    } catch (e) {
-      console.error(e);
-    }
-  };
-
-  const getBands = async () => {
-    try {
-      const res = await axios.get(
-        'https://tame-blue-cuff.cyclic.app/api/v1/bands'
-      );
-      const data = res.data;
-      setBands(data);
-    } catch (e) {
-      console.error(e);
-    }
-  };
-
-  const getOrganizers = async () => {
-    try {
-      const res = await axios.get(
-        'https://tame-blue-cuff.cyclic.app/api/v1/organizers'
-      );
-      const data = res.data;
-      setOrganizers(data);
     } catch (e) {
       console.error(e);
     }
@@ -86,9 +48,6 @@ export const LandingPage = () => {
     setHeaderLogo(false);
     getEvents();
     getVenues();
-    getMusicians();
-    getBands();
-    getOrganizers();
   }, []);
 
   return (
