@@ -14,8 +14,10 @@ footer {
     padding: 0 5vw;
     padding: $bigBoxPaddingBigScreen;
   }
+}
 
-  menu {
+.footer{
+  &__menu{
     display: flex;
     flex-direction: column;
     align-items: start;
@@ -30,7 +32,7 @@ footer {
       gap: 1.5vw;
     }
   }
-  .footer__contact {
+  &__contact {
     display: flex;
     flex-direction: column;
     justify-content: space-between;

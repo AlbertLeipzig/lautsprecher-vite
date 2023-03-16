@@ -3,9 +3,9 @@ import { TitleContext } from '../context/TitleContext.jsx';
 import { HeaderLogoContext } from '../context/HeaderLogoContext.jsx';
 const projects = [
   {
-    title : "default",
-    description: "Click auf einem Tab, um mehr zu erfahren",
-    img: "https://images.unsplash.com/photo-1517816428104-797678c7cf0c?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8M3x8bWVnYXBob25lfGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=500&q=60"
+    title: 'default',
+    description: 'Click auf einem Tab, um mehr zu erfahren',
+    img: 'https://images.unsplash.com/photo-1517816428104-797678c7cf0c?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8M3x8bWVnYXBob25lfGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=500&q=60',
   },
   {
     title: 'musicBoard',
@@ -47,15 +47,17 @@ export const Projects = () => {
   return (
     <div className="projects">
       <h1>Projects</h1>
-      <menu className="projects__test">
-        <li onClick={() => setFilter('musicBoard')}>Musik-Board</li>
-        <li onClick={() => setFilter('article')}>Artikeln</li>
-        <li onClick={() => setFilter('interactiveMap')}>Interaktive Karte</li>
-        <li onClick={() => setFilter('interviews')}>Interviews</li>
-      </menu>
-      <div className="projects__content">
-        {content.description && <p>{content.description}</p>}
-        {content.img && <img src={content.img} alt={content.title} />}
+      <div className="projects__container">
+        <menu className="projects__menu">
+          <li onClick={() => setFilter('musicBoard')}>Musikbrett</li>
+          <li onClick={() => setFilter('article')}>Artikeln</li>
+          <li onClick={() => setFilter('interactiveMap')}>Interaktive Karte</li>
+          <li onClick={() => setFilter('interviews')}>Interviews</li>
+        </menu>
+        <div className="projects__content">
+          {content.description && <p>{content.description}</p>}
+          {content.img && <img src={content.img} alt={content.title} />}
+        </div>
       </div>
     </div>
   );

@@ -1,20 +1,25 @@
 @use '../utilities/boxes.scss' as *;
 @use '../utilities/colors.scss' as *;
 
-$folderColor: orange;
+$folderColor: $primaryColor;
+
 .projects {
-  menu {
+  &__container {
     display: flex;
     flex-direction: column;
+    max-width: 90vw;
+  }
+  &__menu {
+    display: flex;
     justify-content: center;
-    //border-top: 3px solid red;
-    box-shadow: 1.5px -2.5px 0.75px 0.5px $folderColor;
+    margin: 0;
+    padding: 0;
     li {
       padding: 0.5em 0.75em;
       border-radius: 0;
-      box-shadow: 1.5px -2.5px 0.75px 0.5px $folderColor;
       margin: 0;
       transition: 300ms;
+      max-width: 20%;
 
       &:hover {
         color: $secondaryColor;
@@ -35,10 +40,11 @@ $folderColor: orange;
     margin-bottom: 2vh;
     gap: 2vh;
     img {
-      width: 80%;
       aspect-ratio: 1/1;
+      width : 70vw;
       border-radius: $borderRadius;
       object-fit: cover;
+      margin: 0;
     }
   }
 }

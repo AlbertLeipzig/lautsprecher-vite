@@ -4,7 +4,7 @@ import { GrUserAdmin } from 'react-icons/gr';
 export const Footer = () => {
   return (
     <footer>
-      <menu>
+      <menu className='footer__menu'>
         <Link to="/faq"> FAQ </Link>
         <Link to="/events"> Veranstaltungen </Link>
         <Link to="/about"> About </Link>
