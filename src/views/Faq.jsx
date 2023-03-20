@@ -21,10 +21,9 @@ export const Faq = () => {
       <section>
         <h2>Kann ich bei Lautsprecher Karten bestellen?</h2>
         <p>
-          Nein.{' '}
           <span className="mark">
-            Lautsprecher will nur über Musikveranstaltugen informieren und auf
-            keinen Fall sich als Online-Ticket Service vorstellen
+            Nein. Lautsprecher will nur über Musikveranstaltugen informieren und
+            auf keinen Fall sich als Online-Ticket Service vorstellen
           </span>
           . Dafür kann man die Musiker, Bands, Veranstaltungsorte,
           Veranstaltergibt's, sowie Portalen die schon in diesem Bereich tätig

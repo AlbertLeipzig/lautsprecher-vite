@@ -1,6 +1,8 @@
 @use '../utilities/colors.scss' as *;
 
 .about {
+  max-width: 85vw;
+  margin: 0 auto;
   h2 {
     text-align: center;
     color: $grey;

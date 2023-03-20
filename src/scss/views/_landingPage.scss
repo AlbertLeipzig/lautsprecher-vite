@@ -13,6 +13,7 @@ $images: (
     'https://images.unsplash.com/photo-1522202176988-66273c2fd55f?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NHx8Y29sbGFib3JhdGV8ZW58MHx8MHx8&auto=format&fit=crop&w=500&q=60',
 ); 
 
+$test : fit-content + 10%;
 
 @each $name, $url in $images {
   .landing-page__container#{$name} {
@@ -23,17 +24,33 @@ $images: (
     padding: 3em 2vw;
     background-image: linear-gradient(
         to bottom right,
-        #ffffff 95px,
+        #ffffff 130px,
         hsl(0, 45%, 90%, 0)
       ),
       url($url);
     background-size: cover;
 
+    p {
+      width: fit-content;
+      padding: .5em 1em;
+    }
+
     transition : 50ms;
 
     &:hover {
-      outline: 1px solid $primaryColor;
-      background-image:none;
+      /* outline: 1px solid $primaryColor; */
+      background-image: /* linear-gradient(
+        to bottom right,
+        #ffffff 60px,
+        hsl(0, 45%, 90%, 0)
+      ), */
+      url($url);
+      p {
+        background-color: hsla(0, 0%, 100%, 0.8);
+        background-color: $primaryColor;
+        border-radius: 5px;
+        color: white;
+      }
     }
 
     &:active {
@@ -52,7 +69,7 @@ $images: (
       max-width: 50vw;
     }
     @media screen and (min-width: 1025px) {
-      max-width: 33vw;
+      max-width: 20vw;
     }
   }
 }

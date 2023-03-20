@@ -1,6 +1,9 @@
 @use '../utilities/colors' as *;
 @use '../utilities/boxes' as *;
+@use '../utilities/typography' as *;
+
 button {
+  @include baseTypography;
   background-color: $white;
   border: none;
   padding: $boxPadding;

@@ -15,22 +15,30 @@ export const LandingPage = () => {
       <menu>
         <li>
           <Link to="/events">
-            <div className="landing-page__container1">Veranstaltungen</div>
+            <div className="landing-page__container1">
+              <p> Veranstaltungen</p>
+            </div>
           </Link>
         </li>
         <li>
           <Link to="/about">
-            <div className="landing-page__container2">Was ist Lautsprecher</div>
+            <div className="landing-page__container2">
+              <p>Was ist Lautsprecher</p>
+            </div>
           </Link>
         </li>
         <li>
           <Link to="/projects">
-            <div className="landing-page__container3">Projekte</div>
+            <div className="landing-page__container3">
+              <p>Projekte</p>
+            </div>
           </Link>
         </li>
         <li>
           <Link to="/contact">
-            <div className="landing-page__container4">Mitmachen</div>
+            <div className="landing-page__container4">
+              <p>Mitmachen</p>
+            </div>
           </Link>
         </li>
       </menu>
