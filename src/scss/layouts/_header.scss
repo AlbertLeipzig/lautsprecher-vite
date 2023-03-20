@@ -1,8 +1,6 @@
 @use '../utilities/utilities' as *;
 
 header {
-  position: absolute;
-  top: 0;
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   grid-template-areas:

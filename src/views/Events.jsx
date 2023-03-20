@@ -10,20 +10,25 @@ import { filteredByTagAndDate } from '../logic/filteredByTagAndDate.js';
 
 export const Events = () => {
   const [filter, setFilter] = useState({ date: '', tag: '' });
-  const [error, setError] = useState(undefined);
+  const [error, setError] = useState(null);
   const { events, setEvents } = useContext(DataContext);
+  const { venues, setVenues } = useContext(DataContext);
   const { title, setTitle } = useContext(TitleContext);
-  const [filteredEvents, setFilteredEvents] = useState(events);
+  const [filteredEvents, setFilteredEvents] = useState([]);
   const { setHeaderLogo } = useContext(HeaderLogoContext);
 
-  const recoverData = async () => {
+  const serverUri =
+    'http://localhost:5000/api/v1';
+
+  
+  const getEvents = async () => {
     try {
-      const res = await axios.get(
-        `https://tame-blue-cuff.cyclic.app/api/v1/events`
-      );
+      const res = await axios.get(`${serverUri}/events`);
       const data = res.data;
-      setError(undefined)
-      setEvents(data);
+        setEvents(data); 
+        /* setFilteredEvents(data) */
+      setError(null);
+     
     } catch (e) {
       setError(
         'Es tut uns leid, derzeit sind keine Veranstaltung vorhanden. Kommt bitte auf eine späteren Zeitpunkt zurück. Wir freuen uns auf Dich!'
@@ -31,33 +36,49 @@ export const Events = () => {
       console.error(e);
     }
   };
+  
+  
+  const getVenues = async () => {
+    try {
+      const res = await axios.get(
+        `${venues}/venues`
+      );
+      const data = res.data;
+      setVenues(data)
+    console.log(venues)
 
+    } catch (e) {
+      console.error(e);
+    }
+  };
+  
+    
   const filterData = (events, filter) => {
     if (filter.date === '' && filter.tag === '') {
-      setFilteredEvents(events);
+      return (events);
     } else if (filter.date !== '' && filter.tag === '') {
-      setFilteredEvents(filteredByDate(events, filter.date));
+      return (filteredByDate(events, filter.date));
     } else if (filter.date === '' && filter.tag !== '') {
-      setFilteredEvents(filteredByTag(events, filter.tag));
+      return (filteredByTag(events, filter.tag));
     } else if (filter.date !== '' && filter.tag !== '') {
-      setFilteredEvents(filteredByTagAndDate(events, filter.tag, filter.date));
+      return (filteredByTagAndDate(events, filter.tag, filter.date));
     } else {
-      setFilteredEvents(events);
+      return (events);
     }
   };
 
   useEffect(() => {
-    recoverData();
     setHeaderLogo(true);
+    getEvents()
+    getVenues()
     setTitle('Veranstaltungen');
-    const rawEvents = events.length <= 0 ? recoverData() : events;
-    filterData(rawEvents, filter);
+    setFilteredEvents(filterData(events, filter))
   }, [filter, events]);
 
   return (
     <div className="events">
       {title && <h1>{title}</h1>}
-      {error && (
+      {error !== null && (
         <div className="events__error-container">
           <p className="events__error">{error}</p>
           <img

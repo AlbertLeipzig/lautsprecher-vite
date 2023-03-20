@@ -1,54 +1,11 @@
 import { Link } from 'react-router-dom';
 import { useEffect, useState, useContext } from 'react';
 import { DataContext } from '../context/DataContext';
-import axios from 'axios';
+import { getEvents, getVenues } from '../logic/fetchData.js';
 import { HeaderLogoContext } from '../context/HeaderLogoContext';
 
 export const LandingPage = () => {
   const { setHeaderLogo } = useContext(HeaderLogoContext);
-  const {
-    events,
-    setEvents,
-    musicians,
-    setMusicians,
-    bands,
-    setBands,
-    venues,
-    setVenues,
-    organizers,
-    setOrganizers,
-  } = useContext(DataContext);
-
-  const getEvents = async () => {
-    try {
-      const res = await axios.get(
-        `https://tame-blue-cuff.cyclic.app/api/v1/events`
-      );
-      const data = res.data;
-      console.log(data)
-      setEvents(data);
-    } catch (e) {
-      console.error(e);
-    }
-  };
-
-  const getVenues = async () => {
-    try {
-      const res = await axios.get(
-        'https://tame-blue-cuff.cyclic.app/api/v1/venues'
-      );
-      const data = res.data;
-      setVenues(data);
-    } catch (e) {
-      console.error(e);
-    }
-  };
-
-  useEffect(() => {
-    setHeaderLogo(false);
-    getEvents();
-    getVenues();
-  }, []);
 
   return (
     <div className="landing-page">
