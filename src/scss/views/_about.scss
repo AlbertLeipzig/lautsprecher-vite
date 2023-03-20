@@ -4,30 +4,24 @@
   h2 {
     text-align: center;
     color: $grey;
+    margin-bottom: 1.8em;
   }
 
-  .about__mission {
+  &__mission {
     margin: 0 auto;
-  }
-
-  p {
     text-align: center;
     font-style: italic;
     font-size: 2rem;
   }
-  section li {
-    margin: 1em auto;
+
+  section ul {
     display: flex;
-    p {
-      text-align: start;
-    }
+    flex-direction: column;
+    gap: 3.7vh;
+  }
+  section li {
     @media screen and (min-width: 1025px) {
       display: flex;
     }
-  }
-
-  &__bullet {
-    color: $primaryColor;
-    margin-right: 0.5em;
   }
 }
