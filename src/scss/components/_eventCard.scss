@@ -12,7 +12,7 @@
   border-radius: $borderRadius;
   overflow: hidden;
 
-  &__main-info{
+  &__main-info {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
@@ -20,29 +20,14 @@
     margin: 2em auto;
   }
 
-  /*  @media screen and (min-width: 769px) {
-    grid-template-columns: repeat(3, 1fr);
-    grid-template-areas:
-      'img title title'
-      'img subtitle subtitle'
-      'img venue dates'
-      'prices musicians musicians'
-      'link musicians musicians';
-  } */
-  /* 
+  @media screen and (min-width: 500px) {
+    width: 45%;
+    max-width: 300px;
+  }
   @media screen and (min-width: 1024px) {
     width: 20vw;
-    grid-template-columns: repeat(2, 1fr);
-    grid-template-areas:
-      'img img'
-      'title title'
-      'subtitle subtitle'
-      'venue dates'
-      'prices musicians'
-      'link musicians';
   }
 
- */
   &__img {
     grid-area: image;
     width: 100%;

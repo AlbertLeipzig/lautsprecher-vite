@@ -6,7 +6,7 @@ button {
   @include baseTypography;
   background-color: $white;
   border: none;
-  padding: $boxPadding;
+  padding: .5em 1.5em;
   margin-top: 2.5vh;
   border-radius: $borderRadius;
 }
