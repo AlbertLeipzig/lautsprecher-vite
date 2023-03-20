@@ -99,28 +99,36 @@ export const EventCard = ({ props }) => {
       {formattedEvent.title && (
         <h3 className="event-card__title">{formattedEvent.title}</h3>
       )}
-      {formattedEvent.venue && (
-        <a
-          href={formattedEvent?.venue.link}
-          className="event-card__venue"
-          target={'_blank'}
-        >
-          + info : {formattedEvent?.venue}
-        </a>
-      )}
-      <div className="event-card__dates">
-        {formattedEvent?.date.map((date) => (
-          <p>{date}</p>
-        ))}
+      <div className="event-card__main-info">
+        {formattedEvent.venue && (
+          <a
+            href={formattedEvent?.venue.link}
+            className="event-card__info"
+            target={'_blank'}
+          >
+            + info : asdfasdf
+          </a>
+        )}
+        {formattedEvent?.price && (
+          <div className="event-card__prices">
+            {formattedEvent.price.forEach((price) => {
+              <p>
+                {price}
+                <BiEuro />
+              </p>;
+            })}
+          </div>
+        )}
       </div>
-      {formattedEvent.price && (
-        <div className="event-card__prices">
-          <p>
-            {formattedEvent.price || 0}
-            <BiEuro />
-          </p>
-        </div>
+      {formattedEvent?.date.length > 1 && (
+        <select className="event-card__dates">
+          {formattedEvent?.date.map((date) => (
+            <option>{date}</option>
+          ))}
+        </select>
       )}
+
+      {formattedEvent?.date.length === 1 && <p>{formattedEvent?.date}</p>}
     </div>
   );
 };

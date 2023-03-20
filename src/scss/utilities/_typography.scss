@@ -7,6 +7,14 @@
 $primaryFont: 'Alegreya Sans', sans-serif;
 $logoFont: 'Special Elite', sans-serif;
 
+@mixin baseTypography {
+  font-family: $primaryFont;
+  font-size: 1.8rem;
+  font-weight: 400;
+  color: $grey;
+  line-height: 1.7em;
+  max-width: 75ch;
+}
 h1 {
   font-family: $primaryFont;
   font-family: $logoFont;
@@ -34,21 +42,14 @@ h3 {
 }
 
 p,
-a,
-li,
-textarea,
-mark,
-button {
-  font-family: $primaryFont;
-  font-size: 1.8rem;
-  font-weight: 400;
-  color: $grey;
-  line-height: 1.7em;
-  max-width: 75ch;
+textarea {
+  @include baseTypography;
+  line-height: 2.2em;
 }
 
 mark,
 .mark {
+  @include baseTypography;
   font-weight: 700;
   background: none;
 }
@@ -65,6 +66,8 @@ input {
 }
 
 a {
+  @include baseTypography;
+
   /* transition: 200ms; */
   padding: 0.5em;
   &:hover {
@@ -79,4 +82,17 @@ a {
   &:visited {
     color: $primaryColor;
   }
+}
+
+select {
+  border: none;
+  background: none;
+  @include baseTypography;
+  /* appearance: none; */
+}
+
+option {
+  @include baseTypography;
+  font-size: 1.8rem;
+  background-color: none;
 }

@@ -3,10 +3,10 @@ import { BsMusicNote } from 'react-icons/bs';
 import { HeaderLogoContext } from '../context/HeaderLogoContext.jsx';
 import { TitleContext } from '../context/TitleContext.jsx';
 export const About = () => {
-  const {setHeaderLogo} = useContext(HeaderLogoContext);
+  const { setHeaderLogo } = useContext(HeaderLogoContext);
   const { title, setTitle } = useContext(TitleContext);
   useEffect(() => {
-    setHeaderLogo(true)
+    setHeaderLogo(true);
     setTitle('About');
   });
   return (
@@ -22,23 +22,15 @@ export const About = () => {
         <h2>Ziele</h2>
         <ul>
           <li>
-            <p>
-              Dafür wollen wir das Stadtmusikleben, das aus den Musiker alle
-              Arten, Herkunft, Glauben, Identität oder Niveau besteht und das
-              Publikum, verstärken und ins Licht bringen
-            </p>
+            Dafür wollen wir das Stadtmusikleben, das aus den Musiker alle
+            Arten, Herkunft, Glauben, Identität oder Niveau besteht und das
+            Publikum, verstärken und ins Licht bringen
           </li>
+          <li>Musikveranstaltungen der Stadt bekanntmachen</li>
           <li>
-            <p>Musikveranstaltungen der Stadt bekanntmachen</p>
+            Stimme alle Musiker, besonders die kein Platform vorhanden haben
           </li>
-          <li>
-            <p>
-              Stimme alle Musiker, besonders die kein Platform vorhanden haben
-            </p>
-          </li>
-          <li>
-            <p>Musiker, Publikum und Veranstaltungsorte verbinden</p>
-          </li>
+          <li>Musiker, Publikum und Veranstaltungsorte verbinden</li>
         </ul>
       </section>
     </div>

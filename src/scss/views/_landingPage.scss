@@ -1,16 +1,87 @@
 @use '../components/_list.scss' as *;
 @use '../utilities/_boxes.scss' as *;
+@use "../utilities/colors.scss" as *;
 
-$gradientPercent: 100px;
+$images: (
+  '1':
+    'https://images.unsplash.com/photo-1661956602926-db6b25f75947?ixlib=rb-4.0.3&ixid=MnwxMjA3fDF8MHxlZGl0b3JpYWwtZmVlZHwxfHx8ZW58MHx8fHw%3D&auto=format&fit=crop&w=500&q=60',
+  '2':
+    'https://images.unsplash.com/photo-1517816428104-797678c7cf0c?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8M3x8bWVnYXBob25lfGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=500&q=60',
+  '3':
+    'https://images.unsplash.com/photo-1531403009284-440f080d1e12?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8M3x8cHJvamVjdHN8ZW58MHx8MHx8&auto=format&fit=crop&w=500&q=60',
+  '4':
+    'https://images.unsplash.com/photo-1522202176988-66273c2fd55f?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NHx8Y29sbGFib3JhdGV8ZW58MHx8MHx8&auto=format&fit=crop&w=500&q=60',
+); 
+
+$test : fit-content + 10%;
+
+@each $name, $url in $images {
+  .landing-page__container#{$name} {
+    @include list;
+    width: 90vw;
+    min-width: 250px;
+    margin: 0 auto;
+    padding: 3em 2vw;
+    background-image: linear-gradient(
+        to bottom right,
+        #ffffff 130px,
+        hsl(0, 45%, 90%, 0)
+      ),
+      url($url);
+    background-size: cover;
+
+    p {
+      width: fit-content;
+      padding: .5em 1em;
+    }
+
+    transition : 50ms;
+
+    &:hover {
+      /* outline: 1px solid $primaryColor; */
+      background-image: /* linear-gradient(
+        to bottom right,
+        #ffffff 60px,
+        hsl(0, 45%, 90%, 0)
+      ), */
+      url($url);
+      p {
+        background-color: hsla(0, 0%, 100%, 0.8);
+        background-color: $primaryColor;
+        border-radius: 5px;
+        color: white;
+      }
+    }
+
+    &:active {
+      outline: 3px solid $primaryColor;
+    }
+
+    &:focus {
+      background-color: $primaryColor;
+      color : #fff
+    }
+
+    @media screen and (min-width: 481px) {
+      max-width: 66vw;
+    }
+    @media screen and (min-width: 769px) {
+      max-width: 50vw;
+    }
+    @media screen and (min-width: 1025px) {
+      max-width: 20vw;
+    }
+  }
+}
 
 .landing-page {
   h1 {
-    font-size: 4.5rem;
+    font-size: 3.5rem;
     padding: 0;
     margin: 1em 0;
     border-radius: $borderRadius;
     @media screen and (min-width: 481px) {
-      padding : 1em;
+      padding: 1em;
     }
   }
   menu {
@@ -41,55 +112,5 @@ $gradientPercent: 100px;
     /* background-image: url('https://images.unsplash.com/photo-1511379938547-c1f69419868d?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NHx8bXVzaWN8ZW58MHx8MHx8&auto=format&fit=crop&w=500&q=60');
     background-size: cover; */
     margin: 0;
-  }
-  &__container1 {
-    @include list;
-    padding: 3em 2vw;
-    background-image: linear-gradient(
-        to right,
-        #ffffff $gradientPercent,
-
-        hsl(0, 0%, 90%, 0)
-      ),
-      url('https://images.unsplash.com/photo-1661956602926-db6b25f75947?ixlib=rb-4.0.3&ixid=MnwxMjA3fDF8MHxlZGl0b3JpYWwtZmVlZHwxfHx8ZW58MHx8fHw%3D&auto=format&fit=crop&w=500&q=60');
-
-    background-size: cover;
-  }
-
-  &__container2 {
-    @include list;
-    padding: 3em 2vw;
-
-    background-image: linear-gradient(
-        to right,
-        #ffffff $gradientPercent,
-        hsl(0, 0%, 90%, 0)
-      ),
-      url('https://images.unsplash.com/photo-1517816428104-797678c7cf0c?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8M3x8bWVnYXBob25lfGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=500&q=60');
-    background-size: cover;
-  }
-  &__container3 {
-    @include list;
-    padding: 3em 2vw;
-
-    background-image: linear-gradient(
-        to right,
-        #ffffff $gradientPercent,
-        hsl(0, 0%, 90%, 0)
-      ),
-      url('https://images.unsplash.com/photo-1531403009284-440f080d1e12?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8M3x8cHJvamVjdHN8ZW58MHx8MHx8&auto=format&fit=crop&w=500&q=60');
-    background-size: cover;
-  }
-  &__container4 {
-    @include list;
-    padding: 3em 2vw;
-
-    background-image: linear-gradient(
-        to right,
-        #ffffff $gradientPercent,
-        hsl(0, 0%, 90%, 0)
-      ),
-      url('https://images.unsplash.com/photo-1522202176988-66273c2fd55f?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NHx8Y29sbGFib3JhdGV8ZW58MHx8MHx8&auto=format&fit=crop&w=500&q=60');
-    background-size: cover;
   }
 }

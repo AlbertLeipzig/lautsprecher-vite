@@ -1,48 +1,35 @@
 @use '../utilities/boxes' as *;
 @use '../utilities/colors' as *;
 .event-card {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  grid-template-areas:
-    'img img'
-    'title title'
-    'subtitle subtitle'
-    'musicians musicians'
-    'venue dates'
-    'prices link ';
-
-  width: 85vw;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
   margin: $boxMargin;
   padding: $boxPadding;
+  padding-bottom: 1vh;
   border: $border;
   border-radius: $borderRadius;
-  gap: 2vh;
+  overflow: hidden;
 
-  @media screen and (min-width: 769px) {
-    grid-template-columns: repeat(3, 1fr);
-    grid-template-areas:
-      'img title title'
-      'img subtitle subtitle'
-      'img venue dates'
-      'prices musicians musicians'
-      'link musicians musicians';
+  &__main-info {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 90%;
+    margin: 2em auto;
   }
 
+  @media screen and (min-width: 500px) {
+    width: 45%;
+    max-width: 300px;
+  }
   @media screen and (min-width: 1024px) {
     width: 20vw;
-    grid-template-columns: repeat(2, 1fr);
-    /* background-color: teal; */
-    grid-template-areas:
-      'img img'
-      'title title'
-      'subtitle subtitle'
-      'venue dates'
-      'prices musicians'
-      'link musicians';
   }
 
   &__img {
-    grid-area: img;
+    grid-area: image;
     width: 100%;
     aspect-ratio: 2/1;
     object-fit: cover;
@@ -59,66 +46,22 @@
   }
 
   &__title {
+    //display: none;
     grid-area: title;
+    justify-self: center;
+    width: fit-content;
     font-weight: 700;
     font-size: 2rem;
     text-align: center;
     align-items: start;
-    margin-top: 0.5em;
+    margin: 1em 0;
     letter-spacing: 0.1em;
     /* background-color: tomato; */
   }
 
-  &__subtitle {
-    grid-area: subtitle;
-    text-align: center;
-    font-style: italic;
-    /* background-color: crimson; */
-  }
-
-  &__musicians {
-    grid-area: musicians;
-    display: flex;
-    flex-direction: column;
-    li {
-      font-weight: 200;
-      margin-left: 5vw;
-      @media screen and (min-width: 769px) {
-        padding-left: 10vw;
-      }
-    }
-    @media screen and (min-width: 1024px) {
-      /* background-color: maroon; */
-      li {
-        margin: 0;
-        padding: 0;
-      }
-    }
-    //background-color: rebeccapurple;
-  }
-
-  &__venue {
-    grid-area: venue;
-/*     background-color: violet;*/    
-    text-align: right;
-    font-weight: 700;
-    color: $midLightGrey;
-    padding: 0;
-    padding-right: 0.5em;
-  }
-
-  &__dates {
-    grid-area: dates;
-/*     background-color: wheat;*/
-    text-align: left;
-    padding-left: 0.5em;
-    p {
-      font-weight: 700;
-      color: $midLightGrey;
-    }
-  }
-
   &__prices {
+    //display: none;
+
     grid-area: prices;
     display: flex;
     justify-content: center;
@@ -132,7 +75,16 @@
     /* background-color: saddlebrown; */
   }
 
-  &__link {
+  &__dates {
+    display: flex;
+    /* flex-direction: column; */
+    flex-wrap: wrap;
+    gap: 3vw;
+  }
+
+  &__info {
+    //display: none;
+
     grid-area: link;
     /* background-color: tomato; */
     display: flex;
@@ -142,7 +94,6 @@
     /* background-color: teal; */
     @media screen and (min-width: 1024px) {
       justify-content: start;
-      
     }
   }
 }
